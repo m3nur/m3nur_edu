@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from '../../components/Logo/Logo';
+import { Logo } from '../../components';
 import {
   Button,
   Container,
