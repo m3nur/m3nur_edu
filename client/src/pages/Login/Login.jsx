@@ -13,13 +13,14 @@ import {
   Wrapper,
 } from './Login.styled';
 import { useDispatch } from 'react-redux';
-import { loginU } from '../../redux/apiCalls';
-import { Link } from 'react-router-dom';
-import Logo from '../../components/Logo/Logo';
+import { Link, useNavigate } from 'react-router-dom';
+import { Logo } from '../../components';
 import { useForm } from 'react-hook-form';
+import { loginU } from '../../redux/apiCalls';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -28,6 +29,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     loginU(dispatch, { ...data });
+    navigate('/');
   };
 
   return (
