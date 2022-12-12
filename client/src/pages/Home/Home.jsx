@@ -23,7 +23,7 @@ const Home = () => {
             <SubTitle>
               We have collected more than 150 useful, most necessary sites and
               the best tools in web development especially for you. We are
-              confident that they will definitely make your life easier.
+              confident that they are gonna make your life much easier.
             </SubTitle>
             <BTNGetStarted>Get Start</BTNGetStarted>
           </TopWrapper>
