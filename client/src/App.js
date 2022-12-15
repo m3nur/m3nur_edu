@@ -1,9 +1,9 @@
 import { Container } from '@mui/system';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { Footer } from './components';
+import { Footer, Stats } from './components';
 import Topbar from './components/Topbar/Topbar';
-import { Home, Login, NonExistentPage, Register } from './pages';
+import { Home, Login, NonExistentPage, Product, Register } from './pages';
 
 const Main = styled.div``;
 
@@ -22,6 +22,8 @@ function App() {
             <Route path="*" element={<NonExistentPage />} />
           </Routes>
         </Container>
+        <Stats />
+        <Product />
         <Footer />
       </Wrapper>
     </Main>
