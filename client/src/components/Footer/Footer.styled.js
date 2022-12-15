@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
   background-color: #6969d7;
+  padding-top: 60px;
 `;
 
 export const FooterTop = styled.div``;
 
 export const FooterTopWrapper = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
 `;
 
@@ -90,7 +91,7 @@ export const FooterBottomWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   border-top: 1px solid #c5c5c5;
 `;
 

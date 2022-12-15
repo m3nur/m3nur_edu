@@ -80,7 +80,7 @@ const Footer = () => {
               >
                 Nurbek Murataliev.
               </IconItemsLink>
-              © 2023 m3nur. All rights reserved.
+              © 2023. All rights reserved.
             </BottomLeft>
             <BottomRight>
               <Icon>
