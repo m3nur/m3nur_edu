@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const FooterContainer = styled.div`
   background-color: #6969d7;
   padding-top: 60px;
+  flex-grow: 1;
 `;
 
 export const FooterTop = styled.div``;
