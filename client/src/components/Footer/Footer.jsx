@@ -32,7 +32,7 @@ import {
   WrapperLeftLi,
   WrapperLeftUl,
 } from './Footer.styled';
-import OurWebSite from '../../Image/OurWebSIte.png';
+import OurWebSite from '../../image/OurWebSIte.png';
 
 const Footer = () => {
   return (
