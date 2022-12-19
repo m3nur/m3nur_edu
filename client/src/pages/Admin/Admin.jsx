@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   BG,
@@ -10,15 +10,19 @@ import {
   Dashboard,
   Left,
   Post,
-  PostsList,
   PostsListLI,
-  PostsListUL,
+  PostsList,
+  PostTitle,
+  PostWrapper,
   RBottom,
   RBottomTitle,
   Right,
   RLeft,
   RRight,
   RTop,
+  SearchContainer,
+  SearchInput,
+  Span,
   StatsLI,
   StatsUL,
   SubTitle,
@@ -37,10 +41,16 @@ import adminCat from '../../image/catAdmin.avif';
 import { MyResponsivePie } from '../../components/Chart/Chart';
 import { data } from '../data';
 import { BiShow, BiPencil, BiTrash } from 'react-icons/bi';
+import { Search } from '@mui/icons-material';
+import { Modal } from '../../components';
 
 const Admin = () => {
+  const [modal, setModal] = useState(false);
+
+  console.log(modal);
   return (
     <Dashboard>
+      <Modal isOpened={modal} onModalClose={() => setModal(false)} />
       <Container>
         <Wrapper>
           <Left>
@@ -93,85 +103,46 @@ const Admin = () => {
               </RBottom>
             </RLeft>
             <RRight>
-              <PostsList>
-                <Post>
-                  <>Latest Posts</>
-                </Post>
-                <Post>
-                  <PostsListUL>
-                    <PostsListLI style={{ width: '200px' }}>
-                      Animista.net
-                    </PostsListLI>
-                    <PostsListLI style={{ width: '150px' }}>
-                      1 month ago
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiShow />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiPencil />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiTrash />
-                    </PostsListLI>
-                  </PostsListUL>
-                </Post>
-                <Post>
-                  <PostsListUL>
-                    <PostsListLI style={{ width: '200px' }}>
-                      Svgartista.net
-                    </PostsListLI>
-                    <PostsListLI style={{ width: '150px' }}>
-                      3 month ago
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiShow />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiPencil />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiTrash />
-                    </PostsListLI>
-                  </PostsListUL>
-                </Post>
-                <Post>
-                  <PostsListUL>
-                    <PostsListLI style={{ width: '200px' }}>
-                      Fonts.Google.com
-                    </PostsListLI>
-                    <PostsListLI style={{ width: '150px' }}>
-                      6 month ago
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiShow />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiPencil />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiTrash />
-                    </PostsListLI>
-                  </PostsListUL>
-                </Post>
-                <Post>
-                  <PostsListUL>
-                    <PostsListLI style={{ width: '200px' }}>Dev.to</PostsListLI>
-                    <PostsListLI style={{ width: '150px' }}>
-                      10 month ago
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiShow />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiPencil />
-                    </PostsListLI>
-                    <PostsListLI>
-                      <BiTrash />
-                    </PostsListLI>
-                  </PostsListUL>
-                </Post>
-              </PostsList>
+              <Post>
+                <PostWrapper>
+                  <PostTitle>Latest Posts</PostTitle>
+                  <SearchContainer>
+                    <SearchInput placeholder="Search..." />
+                    <Search />
+                  </SearchContainer>
+                </PostWrapper>
+                <PostsList>
+                  <PostsListLI>
+                    <Span style={{ width: '230px' }}>Animista.net</Span>
+                    <Span style={{ width: '150px' }}>1 month ago</Span>
+                    <Span>
+                      <BiShow
+                        style={{ fontSize: '26px' }}
+                        onClick={() => setModal(true)}
+                      />
+                    </Span>
+                    <Span>
+                      <BiPencil style={{ color: 'green' }} />
+                    </Span>
+                    <Span>
+                      <BiTrash style={{ color: 'red' }} />
+                    </Span>
+                  </PostsListLI>
+                  <PostsListLI>
+                    <Span style={{ width: '230px' }}>Svgartista.net</Span>
+                    <Span style={{ width: '150px' }}>2 month ago</Span>
+                    <Span>
+                      <BiShow style={{ fontSize: '26px' }} />
+                    </Span>
+                    <Span>
+                      <BiPencil style={{ color: 'green' }} />
+                    </Span>
+                    <Span>
+                      <BiTrash style={{ color: 'red' }} />
+                    </Span>
+                  </PostsListLI>
+                </PostsList>
+              </Post>
             </RRight>
           </Right>
         </Wrapper>

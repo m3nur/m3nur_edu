@@ -8,7 +8,7 @@ import {
   TopWrapper,
   Wrapper,
 } from './Home.styled';
-// import { HomeLogo } from '../../components';
+import { HomeLogo } from '../../components';
 import { Container } from '@mui/system';
 import { Stats } from '../../components';
 import Product from '../Product/Product';
@@ -32,7 +32,9 @@ const Home = () => {
               <BTNGetStarted>Get Start</BTNGetStarted>
             </TopWrapper>
           </Top>
-          <Bottom>{/* <HomeLogo /> */}</Bottom>
+          <Bottom>
+            <HomeLogo />
+          </Bottom>
         </Wrapper>
       </Container>
       <Stats />

@@ -1,21 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import dots2 from '../../image/dots.png';
 
-export const Dashboard = styled.div`
-  padding: 60px 0;
-`;
+export const Dashboard = styled.div``;
 
 export const Wrapper = styled.div`
   display: flex;
   position: relative;
-  height: 82vh;
+  height: calc(100vh - 61px);
 `;
 
 export const Left = styled.div`
   flex: 1;
   height: 100%;
   background-color: #6969d7;
-  border-radius: 54px 14px 14px 54px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,6 +75,27 @@ export const BottomWrapper = styled.div`
   }
 `;
 
+const vibrate = keyframes`
+ 0% {
+  transform: translate(0);
+  }
+  20% {
+  transform: translate(-2px, 2px);
+  }
+  40% {
+  transform: translate(-2px, -2px);
+  }
+  60% {
+  transform: translate(2px, 2px);
+  }
+  80% {
+  transform: translate(2px, -2px);
+  }
+  100% {
+  transform: translate(0);
+  }
+`;
+
 export const CreatePost = styled.div`
   width: 100px;
   height: 150px;
@@ -97,6 +115,10 @@ export const CreatePost = styled.div`
     color: #6969d7;
     padding: 4px;
   }
+
+  &:hover {
+    animation: ${vibrate} 0.3s linear infinite both;
+  }
 `;
 
 export const Text = styled.span`
@@ -110,7 +132,6 @@ export const Right = styled.div`
   flex: 3;
   height: 100%;
   background: #5252a1;
-  border-radius: 54px 14px 14px 54px;
   position: absolute;
   width: 80%;
   right: 0;
@@ -118,7 +139,7 @@ export const Right = styled.div`
 
 export const RLeft = styled.div`
   flex: 1;
-  padding: 40px 10px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -163,7 +184,8 @@ export const Chart = styled.div`
 
 export const RRight = styled.div`
   flex: 2;
-  padding: 40px 10px;
+  padding: 40px 0px;
+  height: 100%;
 `;
 
 export const StatsUL = styled.ul`
@@ -191,25 +213,88 @@ export const StatsLI = styled.li`
   }
 `;
 
-export const PostsList = styled.div`
-  border-radius: 14px;
-  min-height: 95%;
-  padding: 20px 10px;
-`;
-
 export const Post = styled.div`
-  background-color: white;
-  border: 1px solid;
-  border-radius: 8px;
-  margin: 8px 0;
+  border-radius: 14px;
+  height: 100%;
+  padding: 0 10px;
 `;
 
-export const PostsListUL = styled.ul`
+export const PostWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  font-size: 20px;
+  border: 1px solid white;
+  padding: 3px 6px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 `;
 
-export const PostsListLI = styled.li``;
+export const PostTitle = styled.span`
+  font-size: 26px;
+  color: white;
+  font-weight: 500;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 3px;
+
+  svg {
+    position: absolute;
+    right: 9px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+`;
+export const SearchInput = styled.input`
+  padding: 4px 0px 4px 10px;
+  font-size: 14px;
+  width: 263px;
+  height: 30px;
+  border: 1px solid #c5c5c5;
+  border-radius: 8px;
+  outline: none;
+
+  &:hover {
+    border-color: #554;
+  }
+`;
+
+export const PostsList = styled.ul`
+  overflow-y: scroll;
+  height: 82.8%;
+  padding-right: 10px;
+`;
+
+export const PostsListLI = styled.li`
+  border: 1px solid white;
+  border-radius: 8px;
+  margin-bottom: 11px;
+  padding: 8px 6px;
+  font-size: 22px;
+  background-color: white;
+  color: #6969d7;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+
+export const Span = styled.span`
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  svg {
+    padding: 1px 3px;
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+`;
+
+export const Button = styled.button``;
