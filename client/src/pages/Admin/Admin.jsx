@@ -45,24 +45,46 @@ import { Search } from '@mui/icons-material';
 import { Modal } from '../../components';
 
 const Admin = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState({
+    modalDisplay: false,
+    modalUpdate: false,
+    modalAdd: false,
+  });
 
-  console.log(modal);
   return (
     <Dashboard>
-      <Modal isOpened={modal} onModalClose={() => setModal(false)} />
+      <Modal
+        whoIam={'display'}
+        isOpened={modal.modalDisplay}
+        onModalClose={() => setModal({ ...modal, modalDisplay: false })}
+      />
+      <Modal
+        whoIam={'update'}
+        isOpened={modal.modalUpdate}
+        onModalClose={() => setModal({ ...modal, modalUpdate: false })}
+      />
+      <Modal
+        whoIam={'add'}
+        isOpened={modal.modalAdd}
+        onModalClose={() => setModal({ ...modal, modalAdd: false })}
+      />
       <Container>
         <Wrapper>
           <Left>
             <Top>
               <BG />
               <Avatar>
-                <Cat src={adminCat} />
+                <Cat
+                  src={adminCat}
+                  title="You have been punished for not liking cats, so you cannot change your avatar."
+                />
                 <UserGmail>Myshyk Myshykbekov</UserGmail>
               </Avatar>
             </Top>
             <Bottom>
-              <BottomWrapper>
+              <BottomWrapper
+                onClick={() => setModal({ ...modal, modalAdd: true })}
+              >
                 <CreatePost>
                   <Text>Add post</Text>
                   <FiPlus />
@@ -118,11 +140,18 @@ const Admin = () => {
                     <Span>
                       <BiShow
                         style={{ fontSize: '26px' }}
-                        onClick={() => setModal(true)}
+                        onClick={() =>
+                          setModal({ ...modal, modalDisplay: true })
+                        }
                       />
                     </Span>
                     <Span>
-                      <BiPencil style={{ color: 'green' }} />
+                      <BiPencil
+                        style={{ color: 'green' }}
+                        onClick={() =>
+                          setModal({ ...modal, modalUpdate: true })
+                        }
+                      />
                     </Span>
                     <Span>
                       <BiTrash style={{ color: 'red' }} />

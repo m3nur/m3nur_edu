@@ -4,27 +4,34 @@ export const ModalWrapper = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 100%;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   z-index: 9999;
+
+  &.true {
+    height: 100%;
+    display: block;
+  }
+
+  &.false {
+    height: 0;
+    display: none;
+  }
+`;
+
+export const ModalCenter = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100% ${(props) => props.className};
-  height: 0 ${(props) => props.className};
-  display: block ${(props) => props.className};
-  display: none ${(props) => props.className};
 `;
 
 export const ModalBody = styled.div`
-  max-width: 500px;
-  margin: auto;
+  width: 500px;
   background: white;
   padding: 20px;
   border-radius: 8px;
-  max-height: 100%;
-  position: absolute;
   border: 1px solid #6969d7;
 `;
 
@@ -32,6 +39,7 @@ export const ModalClose = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+  margin-bottom: 20px;
 
   svg {
     font-size: 30px;
@@ -44,17 +52,17 @@ export const ModalClose = styled.div`
 
 export const Title = styled.h2`
   font-size: 26px;
-  margin-bottom: 14px;
+  margin: 18px 0 14px 0;
 `;
 
 export const SubTitle = styled.p`
   font-size: 18px;
-  margin-bottom: 14px;
 `;
 
 export const Tags = styled.ul`
   display: flex;
   align-items: center;
+  margin: 22px 0;
 `;
 export const Tag = styled.li`
   border: 1px solid black;
@@ -70,4 +78,43 @@ export const Tag = styled.li`
     color: white;
     border-color: #6969d7;
   }
+`;
+
+export const Update = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Input = styled.input`
+  padding: 8px 6px;
+  font-size: 18px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #6969d7;
+  margin: 10px 0;
+`;
+
+export const Textarea = styled.textarea`
+  height: 100px;
+  padding: 8px 6px;
+  font-size: 18px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #6969d7;
+  margin: 10px 0;
+`;
+
+export const Label = styled.label`
+  font-size: 20px;
+`;
+
+export const Button = styled.button`
+  padding: 8px;
+  background: #6969d7;
+  border: 1px solid #6969d7;
+  border-radius: 8px;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
 `;

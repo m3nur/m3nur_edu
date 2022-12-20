@@ -69,6 +69,7 @@ export const BottomWrapper = styled.div`
   border: 1px dashed white;
   border-radius: 14px;
   padding: 10px;
+  cursor: pointer;
 
   &:hover {
     border-style: solid;
