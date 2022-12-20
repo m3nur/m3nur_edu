@@ -41,6 +41,7 @@ export const login = async (req, res) => {
       { expiresIn: '90d' }
     );
     const { password, ...others } = user._doc;
+    res.status(200).json({ token, others });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
