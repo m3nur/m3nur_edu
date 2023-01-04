@@ -1,25 +1,19 @@
-import React from 'react';
+import React from "react";
 import {
-  Button,
-  Input,
-  Label,
   ModalBody,
   ModalCenter,
   ModalClose,
   ModalWrapper,
-  SubTitle,
-  Tag,
-  Tags,
-  Textarea,
-  Title,
-  Update,
-} from './Modal.styled';
-import { IoCloseOutline } from 'react-icons/io5';
+} from "./Modal.styled";
+import { IoCloseOutline } from "react-icons/io5";
+import CreateProduct from "../CreateProduct/CreateProduct";
+import UpdateProduct from "../UpdateProduct/UpdateProduct";
+import Product from "../Product/Product";
 
 const Modal = (props) => {
   return (
-    <ModalWrapper className={'modalWrapper ' + props.isOpened}>
-      {props.isOpened && props.whoIam === 'display' && (
+    <ModalWrapper className={"modalWrapper " + props.isOpened}>
+      {props.isOpened && props.whoIam === "display" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>
@@ -27,24 +21,16 @@ const Modal = (props) => {
             </ModalClose>
             <hr
               style={{
-                height: '1px',
-                backgroundColor: '#6969d7',
-                border: 'none',
+                height: "1px",
+                backgroundColor: "#6969d7",
+                border: "none",
               }}
             />
-            <Title>Animista.net</Title>
-            <SubTitle>
-              Animista is a place where you can play with a collection of
-              pre-made css animations.
-            </SubTitle>
-            <Tags>
-              <Tag>#CSS</Tag>
-              <Tag>#Animation</Tag>
-            </Tags>
+            <Product />
           </ModalBody>
         </ModalCenter>
       )}
-      {props.isOpened && props.whoIam === 'update' && (
+      {props.isOpened && props.whoIam === "update" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>
@@ -52,43 +38,16 @@ const Modal = (props) => {
             </ModalClose>
             <hr
               style={{
-                height: '1px',
-                backgroundColor: '#6969d7',
-                border: 'none',
+                height: "1px",
+                backgroundColor: "#6969d7",
+                border: "none",
               }}
             />
-            <Title>Animista.net</Title>
-            <SubTitle>
-              Animista is a place where you can play with a collection of
-              pre-made css animations.
-            </SubTitle>
-            <Tags>
-              <Tag>#CSS</Tag>
-              <Tag>#Animation</Tag>
-            </Tags>
-            <hr
-              style={{
-                height: '1px',
-                backgroundColor: '#6969d7',
-                border: 'none',
-              }}
-            />
-            <Title style={{ color: '#6969d7' }}>Update</Title>
-            <Update>
-              <Label>Product Title</Label>
-              <Input type="text" placeholder="Example.example" />
-              <Label>Product Link</Label>
-              <Input type="text" placeholder="https://www.example.example" />
-              <Label>Product SubTitle</Label>
-              <Textarea type="text" placeholder="Information about product" />
-              <Label>Product Tags</Label>
-              <Input type="text" placeholder="Product Tags" />
-              <Button>Update</Button>
-            </Update>
+            <UpdateProduct />
           </ModalBody>
         </ModalCenter>
       )}
-      {props.isOpened && props.whoIam === 'add' && (
+      {props.isOpened && props.whoIam === "add" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>
@@ -96,23 +55,12 @@ const Modal = (props) => {
             </ModalClose>
             <hr
               style={{
-                height: '1px',
-                backgroundColor: '#6969d7',
-                border: 'none',
+                height: "1px",
+                backgroundColor: "#6969d7",
+                border: "none",
               }}
             />
-            <Title style={{ color: '#6969d7' }}>Create Product</Title>
-            <Update>
-              <Label>Product Title</Label>
-              <Input type="text" placeholder="Example.example" />
-              <Label>Product Link</Label>
-              <Input type="text" placeholder="https://www.example.example" />
-              <Label>Product SubTitle</Label>
-              <Textarea type="text" placeholder="Information about product" />
-              <Label>Product Tags</Label>
-              <Input type="text" placeholder="Product Tags" />
-              <Button>Create</Button>
-            </Update>
+            <CreateProduct />
           </ModalBody>
         </ModalCenter>
       )}

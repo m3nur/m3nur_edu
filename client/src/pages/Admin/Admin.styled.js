@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import dots2 from '../../image/dots.png';
+import styled, { keyframes } from "styled-components";
+import dots2 from "../../image/dots.png";
 
 export const Dashboard = styled.div``;
 
@@ -36,16 +36,16 @@ export const BG = styled.div`
   background-image: url(${dots2});
   background-size: 190%;
   background-position: center;
-  height: 100px;
+  height: 110px;
+  width: 110px;
   position: absolute;
-  width: 100px;
-  right: 30px;
+  right: 0;
   top: 40px;
 `;
 
 export const Cat = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   padding: 20px;
@@ -98,8 +98,8 @@ const vibrate = keyframes`
 `;
 
 export const CreatePost = styled.div`
-  width: 100px;
-  height: 150px;
+  width: 130px;
+  height: 180px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -172,9 +172,8 @@ export const RBottom = styled.div`
 `;
 
 export const RBottomTitle = styled.span`
-  font-size: 28px;
-  font-weight: 600;
-  width: 90%;
+  font-size: 30px;
+  font-weight: 900;
   color: #6969d7;
 `;
 
@@ -253,7 +252,7 @@ export const SearchInput = styled.input`
   padding: 4px 0px 4px 10px;
   font-size: 14px;
   width: 263px;
-  height: 30px;
+  height: 40px;
   border: 1px solid #c5c5c5;
   border-radius: 8px;
   outline: none;
@@ -265,8 +264,20 @@ export const SearchInput = styled.input`
 
 export const PostsList = styled.ul`
   overflow-y: scroll;
-  height: 82.8%;
+  height: 91%;
   padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1.3);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    outline: 1px solid;
+  }
 `;
 
 export const PostsListLI = styled.li`

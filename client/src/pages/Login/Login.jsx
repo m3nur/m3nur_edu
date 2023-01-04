@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Bottom,
   BottomText,
@@ -11,16 +11,15 @@ import {
   Subtitle,
   Title,
   Wrapper,
-} from './Login.styled';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Logo } from '../../components';
-import { useForm } from 'react-hook-form';
-import { loginU } from '../../redux/apiCalls';
+} from "./Login.styled";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { Logo } from "../../components";
+import { useForm } from "react-hook-form";
+import { loginU } from "../../redux/apiCalls";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -29,7 +28,6 @@ const Login = () => {
 
   const onSubmit = (data) => {
     loginU(dispatch, { ...data });
-    navigate('/');
   };
 
   return (
@@ -42,12 +40,12 @@ const Login = () => {
           <LoginLabel>Email</LoginLabel>
           <LoginInput
             type="text"
-            placeholder="email"
-            {...register('email', {
-              required: 'Email is required',
+            placeholder="Email"
+            {...register("email", {
+              required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
+                message: "Invalid email address",
               },
             })}
           />
@@ -59,11 +57,11 @@ const Login = () => {
           <LoginInput
             type="password"
             placeholder="Password"
-            {...register('password', {
+            {...register("password", {
               required: true,
               minLength: {
                 value: 6,
-                message: 'Please enter a password with at least 6 characters!',
+                message: "Please enter a password with at least 6 characters!",
               },
               maxLength: {
                 value: 20,
@@ -77,9 +75,11 @@ const Login = () => {
           <Button type="submit">Login</Button>
           <Bottom>
             <BottomText>
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <Link to="/register">
-                <b style={{ fontWeight: '500', color: 'black' }}>SIGN UP</b>
+                <b style={{ fontWeight: "500", color: "black" }}>
+                  CREATE ACCOUNT
+                </b>
               </Link>
             </BottomText>
           </Bottom>

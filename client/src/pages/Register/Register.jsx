@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Logo } from '../../components';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { Logo } from "../../components";
 import {
   Button,
   Container,
@@ -14,9 +14,9 @@ import {
   RegisterLabel,
   Subtitle,
   ErrorTitle,
-} from './Register.styled';
-import { useForm } from 'react-hook-form';
-import { registerU } from '../../redux/apiCalls';
+} from "./Register.styled";
+import { useForm } from "react-hook-form";
+import { registerU } from "../../redux/apiCalls";
 
 const Register = () => {
   const {
@@ -25,17 +25,9 @@ const Register = () => {
     handleSubmit,
   } = useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const status = useSelector((state) => state.user.error);
-  console.log(status);
 
   const onSubmit = (data) => {
     registerU(dispatch, { ...data });
-    if (!status) {
-      navigate('/login');
-    } else {
-      alert('Something went wrong or the user already exists!');
-    }
   };
 
   return (
@@ -49,11 +41,11 @@ const Register = () => {
           <Input
             type="text"
             placeholder="Name"
-            {...register('name', {
-              required: 'Name is required',
+            {...register("name", {
+              required: "Name is required",
               minLength: {
                 value: 3,
-                message: 'Please enter a name with at least 3 characters!',
+                message: "Please enter a name with at least 3 characters!",
               },
               maxLength: {
                 value: 20,
@@ -61,7 +53,7 @@ const Register = () => {
               },
               pattern: {
                 value: /.*\S.*/,
-                message: 'Input cannot be empty!',
+                message: "Input cannot be empty!",
               },
             })}
           />
@@ -73,11 +65,11 @@ const Register = () => {
           <Input
             type="email"
             placeholder="example@example.com"
-            {...register('email', {
-              required: 'Email is required',
+            {...register("email", {
+              required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
+                message: "Invalid email address",
               },
             })}
           />
@@ -89,11 +81,11 @@ const Register = () => {
           <Input
             type="password"
             placeholder="Password"
-            {...register('password', {
-              required: true,
+            {...register("password", {
+              required: "Password is required",
               minLength: {
                 value: 6,
-                message: 'Please enter a password with at least 6 characters!',
+                message: "Please enter a password with at least 6 characters!",
               },
               maxLength: {
                 value: 20,
@@ -101,7 +93,7 @@ const Register = () => {
               },
               pattern: {
                 value: /.*\S.*/,
-                message: 'Input cannot be empty!',
+                message: "Input cannot be empty!",
               },
             })}
           />
@@ -112,9 +104,9 @@ const Register = () => {
           <Button type="submit">CREATE</Button>
           <Bottom>
             <BottomText>
-              Already have an account? {'  '}
+              Already have an account? {"  "}
               <Link to="/login">
-                <b style={{ fontWeight: '500', color: 'black' }}>SIGN IN</b>
+                <b style={{ fontWeight: "500", color: "black" }}>LOGIN</b>
               </Link>
             </BottomText>
           </Bottom>
