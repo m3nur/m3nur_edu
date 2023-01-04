@@ -1,18 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: 'light',
+  mode: "light",
   user: null,
   isFetching: false,
   error: false,
 };
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setMode: (state) => {
-      state.mode = state.mode === 'light' ? 'dark' : 'light';
+      state.mode = state.mode === "light" ? "dark" : "light";
     },
     loginStart: (state) => {
       state.isFetching = true;
@@ -33,6 +33,7 @@ export const authSlice = createSlice({
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
+      state.user = action.payload;
       state.error = false;
     },
     registerFailure: (state) => {
@@ -41,7 +42,6 @@ export const authSlice = createSlice({
     },
     setLogout: (state) => {
       state.user = null;
-      state.token = null;
     },
   },
 });

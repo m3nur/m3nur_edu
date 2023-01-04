@@ -37,7 +37,7 @@ export const TopbarIconContainer = styled.div`
   color: #6969d7;
   padding: 4px 10px;
   border-radius: 8px;
-  height: 30px;
+  height: 40px;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
@@ -70,7 +70,7 @@ export const SearchInput = styled.input`
   font-size: 16px;
   margin-left: 30px;
   width: 300px;
-  height: 30px;
+  height: 40px;
   border: 1px solid #c5c5c5;
   border-radius: 8px;
 
