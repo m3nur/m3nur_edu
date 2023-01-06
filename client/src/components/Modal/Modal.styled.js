@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
   position: fixed;
@@ -80,7 +80,7 @@ export const Tag = styled.li`
   }
 `;
 
-export const Update = styled.div`
+export const Update = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -117,4 +117,5 @@ export const Button = styled.button`
   font-size: 20px;
   font-weight: 800;
   cursor: pointer;
+  margin-top: 20px;
 `;

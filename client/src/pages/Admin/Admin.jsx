@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   BG,
@@ -31,42 +31,79 @@ import {
   Top,
   UserGmail,
   Wrapper,
-} from './Admin.styled';
-import { Container } from '@mui/material';
-import { FaHtml5, FaReact } from 'react-icons/fa';
-import { SiJavascript } from 'react-icons/si';
-import { DiCodeigniter, DiCss3 } from 'react-icons/di';
-import { FiPlus } from 'react-icons/fi';
-import adminCat from '../../image/catAdmin.avif';
-import { MyResponsivePie } from '../../components/Chart/Chart';
-import { data } from '../data';
-import { BiShow, BiPencil, BiTrash } from 'react-icons/bi';
-import { Search } from '@mui/icons-material';
-import { Modal } from '../../components';
+} from "./Admin.styled";
+import { Container } from "@mui/material";
+import { FaHtml5, FaReact } from "react-icons/fa";
+import { SiJavascript } from "react-icons/si";
+import { DiCodeigniter, DiCss3 } from "react-icons/di";
+import { FiPlus } from "react-icons/fi";
+import adminCat from "../../image/catAdmin.avif";
+import { MyResponsivePie } from "../../components/Chart/Chart";
+import { data } from "../data";
+import { BiShow, BiPencil, BiTrash } from "react-icons/bi";
+import { Search } from "@mui/icons-material";
+import { Modal } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/apiCalls";
+import { format } from "timeago.js";
 
 const Admin = () => {
+  const goldVault = useSelector((state) => state.goldVault.goldVault);
   const [modal, setModal] = useState({
-    modalDisplay: false,
-    modalUpdate: false,
-    modalAdd: false,
+    modalDisplay: {
+      display: false,
+      product: {},
+    },
+    modalUpdate: {
+      display: false,
+    },
+    modalAdd: {
+      display: false,
+    },
   });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
 
   return (
     <Dashboard>
       <Modal
-        whoIam={'display'}
+        whoIam={"display"}
         isOpened={modal.modalDisplay}
-        onModalClose={() => setModal({ ...modal, modalDisplay: false })}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalDisplay: {
+              display: false,
+            },
+          })
+        }
       />
       <Modal
-        whoIam={'update'}
+        whoIam={"update"}
         isOpened={modal.modalUpdate}
-        onModalClose={() => setModal({ ...modal, modalUpdate: false })}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalUpdate: {
+              display: false,
+            },
+          })
+        }
       />
       <Modal
-        whoIam={'add'}
+        whoIam={"add"}
         isOpened={modal.modalAdd}
-        onModalClose={() => setModal({ ...modal, modalAdd: false })}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalAdd: {
+              display: false,
+            },
+          })
+        }
       />
       <Container>
         <Wrapper>
@@ -83,10 +120,17 @@ const Admin = () => {
             </Top>
             <Bottom>
               <BottomWrapper
-                onClick={() => setModal({ ...modal, modalAdd: true })}
+                onClick={() =>
+                  setModal({
+                    ...modal,
+                    modalAdd: {
+                      display: true,
+                    },
+                  })
+                }
               >
                 <CreatePost>
-                  <Text>Add post</Text>
+                  <Text>CREATE</Text>
                   <FiPlus />
                 </CreatePost>
               </BottomWrapper>
@@ -134,42 +178,44 @@ const Admin = () => {
                   </SearchContainer>
                 </PostWrapper>
                 <PostsList>
-                  <PostsListLI>
-                    <Span style={{ width: '230px' }}>Animista.net</Span>
-                    <Span style={{ width: '150px' }}>1 month ago</Span>
-                    <Span>
-                      <BiShow
-                        style={{ fontSize: '26px' }}
-                        onClick={() =>
-                          setModal({ ...modal, modalDisplay: true })
-                        }
-                      />
-                    </Span>
-                    <Span>
-                      <BiPencil
-                        style={{ color: 'green' }}
-                        onClick={() =>
-                          setModal({ ...modal, modalUpdate: true })
-                        }
-                      />
-                    </Span>
-                    <Span>
-                      <BiTrash style={{ color: 'red' }} />
-                    </Span>
-                  </PostsListLI>
-                  <PostsListLI>
-                    <Span style={{ width: '230px' }}>Svgartista.net</Span>
-                    <Span style={{ width: '150px' }}>2 month ago</Span>
-                    <Span>
-                      <BiShow style={{ fontSize: '26px' }} />
-                    </Span>
-                    <Span>
-                      <BiPencil style={{ color: 'green' }} />
-                    </Span>
-                    <Span>
-                      <BiTrash style={{ color: 'red' }} />
-                    </Span>
-                  </PostsListLI>
+                  {goldVault?.map((el, indx) => (
+                    <PostsListLI key={indx}>
+                      <Span style={{ width: "230px" }}>{el.title}</Span>
+                      <Span style={{ width: "150px" }}>
+                        {format(el.createdAt)}
+                      </Span>
+                      <Span>
+                        <BiShow
+                          style={{ fontSize: "26px" }}
+                          onClick={() =>
+                            setModal({
+                              ...modal,
+                              modalDisplay: {
+                                display: true,
+                                product: { ...el },
+                              },
+                            })
+                          }
+                        />
+                      </Span>
+                      <Span>
+                        <BiPencil
+                          style={{ color: "green" }}
+                          onClick={() =>
+                            setModal({
+                              ...modal,
+                              modalUpdate: {
+                                display: true,
+                              },
+                            })
+                          }
+                        />
+                      </Span>
+                      <Span>
+                        <BiTrash style={{ color: "red" }} />
+                      </Span>
+                    </PostsListLI>
+                  ))}
                 </PostsList>
               </Post>
             </RRight>

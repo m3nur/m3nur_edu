@@ -109,8 +109,8 @@ export const CreatePost = styled.div`
   background-color: #5252a1;
 
   svg {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     background-color: white;
     border-radius: 50%;
     color: #6969d7;

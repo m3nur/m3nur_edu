@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import User from "../model/User";
 
 export const verifyToken = async (req, res, next) => {
   try {
@@ -21,14 +20,14 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 
-export const verifyAuth = async (req, res, next) => {
-  const user = await User.findOne({ id: req.body._id });
-  if (user._id === req.params.id || user.isAdmin) {
-    next();
-  } else {
-    res.status(403).json("You are not allowed to do that!");
-  }
-};
+// export const verifyAuth = async (req, res, next) => {
+//   const user = await User.findOne({ id: req.body._id });
+//   if (user._id === req.params.id || user.isAdmin) {
+//     next();
+//   } else {
+//     res.status(403).json("You are not allowed to do that!");
+//   }
+// };
 
 export const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {

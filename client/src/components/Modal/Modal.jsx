@@ -12,8 +12,8 @@ import Product from "../Product/Product";
 
 const Modal = (props) => {
   return (
-    <ModalWrapper className={"modalWrapper " + props.isOpened}>
-      {props.isOpened && props.whoIam === "display" && (
+    <ModalWrapper className={"modalWrapper " + props.isOpened.display}>
+      {props.isOpened.display && props.whoIam === "display" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>
@@ -26,11 +26,11 @@ const Modal = (props) => {
                 border: "none",
               }}
             />
-            <Product />
+            <Product props={props} />
           </ModalBody>
         </ModalCenter>
       )}
-      {props.isOpened && props.whoIam === "update" && (
+      {props.isOpened.display && props.whoIam === "update" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>
@@ -47,7 +47,7 @@ const Modal = (props) => {
           </ModalBody>
         </ModalCenter>
       )}
-      {props.isOpened && props.whoIam === "add" && (
+      {props.isOpened.display && props.whoIam === "add" && (
         <ModalCenter>
           <ModalBody>
             <ModalClose onClick={props.onModalClose}>

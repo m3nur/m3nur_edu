@@ -7,10 +7,9 @@ const GoldVaultSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    description: {
+    desc: {
       type: String,
       required: true,
-      unique: true,
     },
     tags: {
       type: Array,

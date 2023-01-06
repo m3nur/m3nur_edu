@@ -1,8 +1,10 @@
 import express from "express";
-import { createProduct } from "../controllers/goldVault";
+import { createProduct, getProduct } from "../controllers/goldVault.js";
+import { verifyTokenAndAdmin } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/", createProduct);
+router.post("/", verifyTokenAndAdmin, createProduct);
+router.get("/", getProduct);
 
 export default router;
