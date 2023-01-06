@@ -8,7 +8,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
-import productRoutes from "./routes/goldVault";
+import productRoutes from "./routes/goldVault.js";
 import dbConnect from "./config/dbConnect.js";
 import router from "express";
 const PORT = process.env.PORT || 6001;
@@ -42,7 +42,7 @@ mongoose.set("strictQuery", false);
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 app.use("/auth", authRoutes);
-app.use("/", productRoutes);
+app.use("/products", productRoutes);
 
 dbConnect();
 

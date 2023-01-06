@@ -9,6 +9,14 @@ import {
 } from "./userSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {
+  createFailure,
+  createStart,
+  createSuccess,
+  getProductFailure,
+  getProductStart,
+  getProductSuccess,
+} from "./goldVaultSlice";
 
 const BASE_URL = "http://localhost:6001/";
 
@@ -64,4 +72,44 @@ export const registerU = async (dispatch, user) => {
 
 export const logout = async (dispatch) => {
   dispatch(setLogout());
+};
+
+export const createProduct = async (dispatch, product) => {
+  dispatch(createStart());
+  const add = toast.loading("Please wait...");
+  try {
+    const res = await request.post(`/products`, product, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.user?.token
+        }`,
+      },
+    });
+    dispatch(createSuccess(res.data));
+    toast.update(add, {
+      render: "Новая книга успешно добавлен.",
+      type: "success",
+      isLoading: false,
+      autoClose: 1000,
+    });
+  } catch (err) {
+    dispatch(createFailure());
+    toast.update(add, {
+      render: "Что-то пошло не так...",
+      type: "error",
+      isLoading: false,
+      autoClose: 2000,
+    });
+  }
+};
+
+export const getProducts = async (dispatch) => {
+  dispatch(getProductStart());
+  try {
+    const res = await request.get("/products");
+    dispatch(getProductSuccess(res.data));
+  } catch (err) {
+    dispatch(getProductFailure());
+  }
 };

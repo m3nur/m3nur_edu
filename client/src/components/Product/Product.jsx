@@ -1,17 +1,17 @@
 import React from "react";
 import { SubTitle, Tag, Tags, Title } from "../Modal/Modal.styled";
 
-const Product = () => {
+const Product = (props) => {
+  const product = props.props.isOpened.product;
+
   return (
     <>
-      <Title>Animista.net</Title>
-      <SubTitle>
-        Animista is a place where you can play with a collection of pre-made css
-        animations.
-      </SubTitle>
+      <Title>{product?.title}</Title>
+      <SubTitle>{product?.desc}</SubTitle>
       <Tags>
-        <Tag>#CSS</Tag>
-        <Tag>#Animation</Tag>
+        {product?.tags?.map((el) => (
+          <Tag key={el}>#{el}</Tag>
+        ))}
       </Tags>
     </>
   );
