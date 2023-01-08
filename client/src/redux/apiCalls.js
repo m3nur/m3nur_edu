@@ -13,9 +13,15 @@ import {
   createFailure,
   createStart,
   createSuccess,
+  deleteProductFailure,
+  deleteProductStart,
+  deleteProductSuccess,
   getProductFailure,
   getProductStart,
   getProductSuccess,
+  updateProductFailure,
+  updateProductStart,
+  updateProductSuccess,
 } from "./goldVaultSlice";
 
 const BASE_URL = "http://localhost:6001/";
@@ -76,7 +82,7 @@ export const logout = async (dispatch) => {
 
 export const createProduct = async (dispatch, product) => {
   dispatch(createStart());
-  const add = toast.loading("Please wait...");
+  const create = toast.loading("Please wait...");
   try {
     const res = await request.post(`/products`, product, {
       headers: {
@@ -87,16 +93,16 @@ export const createProduct = async (dispatch, product) => {
       },
     });
     dispatch(createSuccess(res.data));
-    toast.update(add, {
-      render: "Новая книга успешно добавлен.",
+    toast.update(create, {
+      render: "The new product has been successfully added to the vault.",
       type: "success",
       isLoading: false,
-      autoClose: 1000,
+      autoClose: 2000,
     });
   } catch (err) {
     dispatch(createFailure());
-    toast.update(add, {
-      render: "Что-то пошло не так...",
+    toast.update(create, {
+      render: "Something went wrong or the product already exists in the vault",
       type: "error",
       isLoading: false,
       autoClose: 2000,
@@ -111,5 +117,66 @@ export const getProducts = async (dispatch) => {
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());
+  }
+};
+
+export const deleteProduct = async (dispatch, id) => {
+  dispatch(deleteProductStart());
+  const del = toast.loading("Please wait...");
+  try {
+    await request.delete(`/products/${id}`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.user?.token
+        }`,
+      },
+    });
+    dispatch(deleteProductSuccess(id));
+    toast.update(del, {
+      render: "You have successfully removed the product from the vault",
+      type: "success",
+      isLoading: false,
+      autoClose: 1000,
+    });
+  } catch (err) {
+    dispatch(deleteProductFailure());
+    toast.update(del, {
+      render: "Something went wrong!!!",
+      type: "error",
+      isLoading: false,
+      autoClose: 2000,
+    });
+  }
+};
+
+export const updateProduct = async (dispatch, id, product) => {
+  dispatch(updateProductStart());
+  const upd = toast.loading("Please wait...");
+
+  try {
+    const res = await request.put(`/products/${id}`, product, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.user?.token
+        }`,
+      },
+    });
+    dispatch(updateProductSuccess(res.data, id));
+    toast.update(upd, {
+      render: "You have successfully updated the product",
+      type: "success",
+      isLoading: false,
+      autoClose: 1000,
+    });
+  } catch (err) {
+    dispatch(updateProductFailure());
+    toast.update(upd, {
+      render: "Something went wrong!!!",
+      type: "error",
+      isLoading: false,
+      autoClose: 2000,
+    });
   }
 };

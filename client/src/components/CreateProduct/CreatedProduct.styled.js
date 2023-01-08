@@ -13,18 +13,18 @@ export const TagsInput = styled.div`
   border: 1px solid #6969d7;
   border-radius: 8px;
   margin: 10px 0;
+  padding: 10px;
 
   & .tag::-webkit-input-placeholder {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
   }
 `;
 
 export const TagsWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 0;
-  padding: 0 4px;
 `;
 
 export const Tags = styled.li`
@@ -39,7 +39,7 @@ export const Tags = styled.li`
   align-items: center;
   border: 1px solid #6969d7;
   justify-content: center;
-  margin: 0 4px 6px 4px;
+  margin: 0 4px 6px 0px;
 
   svg {
     font-size: 22px;

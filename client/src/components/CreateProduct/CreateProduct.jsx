@@ -17,7 +17,7 @@ import {
   TagsTitle,
   TagsWrapper,
 } from "./CreatedProduct.styled";
-import { CiCircleRemove } from "react-icons/ci";
+import { IoMdRemoveCircle } from "react-icons/io";
 
 const CreateProduct = () => {
   const {
@@ -107,7 +107,7 @@ const CreateProduct = () => {
             {tags.map((tag, index) => (
               <Tags key={index}>
                 <TagsTitle>{tag}</TagsTitle>
-                <CiCircleRemove onClick={() => removeTags(index)} />
+                <IoMdRemoveCircle onClick={() => removeTags(index)} />
               </Tags>
             ))}
           </TagsWrapper>

@@ -11,6 +11,7 @@ import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import Product from "../Product/Product";
 
 const Modal = (props) => {
+  const ID = props?.isOpened.product;
   return (
     <ModalWrapper className={"modalWrapper " + props.isOpened.display}>
       {props.isOpened.display && props.whoIam === "display" && (
@@ -26,13 +27,13 @@ const Modal = (props) => {
                 border: "none",
               }}
             />
-            <Product props={props} />
+            <Product props={ID} />
           </ModalBody>
         </ModalCenter>
       )}
       {props.isOpened.display && props.whoIam === "update" && (
         <ModalCenter>
-          <ModalBody>
+          <ModalBody className="update">
             <ModalClose onClick={props.onModalClose}>
               <IoCloseOutline />
             </ModalClose>
@@ -43,7 +44,7 @@ const Modal = (props) => {
                 border: "none",
               }}
             />
-            <UpdateProduct />
+            <UpdateProduct props={ID} />
           </ModalBody>
         </ModalCenter>
       )}

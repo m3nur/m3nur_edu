@@ -36,6 +36,37 @@ export const goldVaultSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    deleteProductStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    deleteProductSuccess: (state, action) => {
+      state.isFetching = false;
+      state.goldVault.splice(
+        state.goldVault.findIndex((item) => item._id === action.payload),
+        1
+      );
+      state.error = false;
+    },
+    deleteProductFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    updateProductStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateProductSuccess: (state, action) => {
+      state.isFetching = false;
+      state.goldVault[
+        state.goldVault.findIndex((item) => item._id === action.payload.id)
+      ] = action.payload.goldVault;
+      state.error = false;
+    },
+    updateProductFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -46,5 +77,11 @@ export const {
   getProductStart,
   getProductSuccess,
   getProductFailure,
+  deleteProductStart,
+  deleteProductSuccess,
+  deleteProductFailure,
+  updateProductStart,
+  updateProductSuccess,
+  updateProductFailure,
 } = goldVaultSlice.actions;
 export default goldVaultSlice.reducer;
