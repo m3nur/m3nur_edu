@@ -33,6 +33,10 @@ export const ModalBody = styled.div`
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #6969d7;
+
+  &.update {
+    width: 800px;
+  }
 `;
 
 export const ModalClose = styled.div`
@@ -52,7 +56,12 @@ export const ModalClose = styled.div`
 
 export const Title = styled.h2`
   font-size: 26px;
-  margin: 18px 0 14px 0;
+  margin-bottom: 14px;
+
+  svg {
+    vertical-align: bottom;
+    margin-left: 10px;
+  }
 `;
 
 export const SubTitle = styled.p`
@@ -62,16 +71,18 @@ export const SubTitle = styled.p`
 export const Tags = styled.ul`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   margin: 22px 0;
 `;
+
 export const Tag = styled.li`
   border: 1px solid black;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 16px;
+  padding: 6px;
+  font-size: 18px;
+  border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
-  margin-right: 5px;
+  margin: 0 4px 6px 0;
 
   &:hover {
     background-color: #6969d7;
@@ -92,6 +103,11 @@ export const Input = styled.input`
   outline: none;
   border: 1px solid #6969d7;
   margin: 10px 0;
+
+  &.tag {
+    margin: 0;
+    width: 100%;
+  }
 `;
 
 export const Textarea = styled.textarea`

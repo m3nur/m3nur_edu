@@ -44,10 +44,11 @@ import { BiShow, BiPencil, BiTrash } from "react-icons/bi";
 import { Search } from "@mui/icons-material";
 import { Modal } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/apiCalls";
+import { deleteProduct, getProducts } from "../../redux/apiCalls";
 import { format } from "timeago.js";
 
 const Admin = () => {
+  const dispatch = useDispatch();
   const goldVault = useSelector((state) => state.goldVault.goldVault);
   const [modal, setModal] = useState({
     modalDisplay: {
@@ -56,16 +57,20 @@ const Admin = () => {
     },
     modalUpdate: {
       display: false,
+      product: {},
     },
     modalAdd: {
       display: false,
     },
   });
-  const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteProduct(dispatch, id);
+  };
 
   return (
     <Dashboard>
@@ -178,40 +183,39 @@ const Admin = () => {
                   </SearchContainer>
                 </PostWrapper>
                 <PostsList>
-                  {goldVault?.map((el, indx) => (
-                    <PostsListLI key={indx}>
+                  {goldVault?.map((el) => (
+                    <PostsListLI key={el._id}>
                       <Span style={{ width: "230px" }}>{el.title}</Span>
                       <Span style={{ width: "150px" }}>
                         {format(el.createdAt)}
                       </Span>
-                      <Span>
-                        <BiShow
-                          style={{ fontSize: "26px" }}
-                          onClick={() =>
-                            setModal({
-                              ...modal,
-                              modalDisplay: {
-                                display: true,
-                                product: { ...el },
-                              },
-                            })
-                          }
-                        />
+                      <Span
+                        onClick={() =>
+                          setModal({
+                            ...modal,
+                            modalDisplay: {
+                              display: true,
+                              product: el._id,
+                            },
+                          })
+                        }
+                      >
+                        <BiShow style={{ fontSize: "26px" }} />
                       </Span>
-                      <Span>
-                        <BiPencil
-                          style={{ color: "green" }}
-                          onClick={() =>
-                            setModal({
-                              ...modal,
-                              modalUpdate: {
-                                display: true,
-                              },
-                            })
-                          }
-                        />
+                      <Span
+                        onClick={() =>
+                          setModal({
+                            ...modal,
+                            modalUpdate: {
+                              display: true,
+                              product: el._id,
+                            },
+                          })
+                        }
+                      >
+                        <BiPencil style={{ color: "green" }} />
                       </Span>
-                      <Span>
+                      <Span onClick={() => handleDelete(el._id)}>
                         <BiTrash style={{ color: "red" }} />
                       </Span>
                     </PostsListLI>
