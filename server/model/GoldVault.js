@@ -26,6 +26,10 @@ const GoldVaultSchema = new mongoose.Schema(
     visit: {
       type: Number,
     },
+    recommended: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

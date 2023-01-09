@@ -18,7 +18,6 @@ const Product = (props) => {
     state.goldVault.goldVault.find((el) => el._id === props.props)
   );
   const admin = location.pathname === "/admin";
-  console.log(admin);
 
   return (
     <>
