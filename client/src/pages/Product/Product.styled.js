@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProductPresentation = styled.div`
   padding: 60px 0;
@@ -57,6 +57,11 @@ export const Tab = styled.li`
     background-color: #6969d7;
     color: white;
   }
+
+  &.true {
+    background-color: #6969d7;
+    color: white;
+  }
 `;
 
 export const Small = styled.div`
@@ -64,7 +69,7 @@ export const Small = styled.div`
   padding: 20px;
   border-radius: 8px;
   width: 300px;
-  height: 120px;
+  height: 100%;
   margin: 20px 0;
 `;
 

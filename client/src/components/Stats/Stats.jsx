@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container } from '@mui/material';
+import React from "react";
+import { Container } from "@mui/material";
 import {
   Amount,
   StatsLI,
@@ -7,12 +7,22 @@ import {
   StatsWrapper,
   SubTitle,
   Title,
-} from './Stats.styled';
-import { FaHtml5, FaReact } from 'react-icons/fa';
-import { SiJavascript } from 'react-icons/si';
-import { DiCodeigniter, DiCss3 } from 'react-icons/di';
+} from "./Stats.styled";
+import { FaHtml5, FaReact } from "react-icons/fa";
+import { SiJavascript } from "react-icons/si";
+import { DiCodeigniter, DiCss3 } from "react-icons/di";
+import { useSelector } from "react-redux";
 
 const Stats = () => {
+  const goldVault = useSelector((state) => state.goldVault.goldVault);
+  const value = [];
+  goldVault.map((el) => el.tags.forEach((el) => value.push(el.toLowerCase())));
+  const react = value.filter((el) => el === "react").length;
+  const js = value.filter((el) => el === "javascript").length;
+  const html = value.filter((el) => el === "html").length;
+  const css = value.filter((el) => el === "css").length;
+  const others = value.length - (react + js + html + css);
+
   return (
     <StatsWrapper>
       <Container>
@@ -21,7 +31,7 @@ const Stats = () => {
             <Title>
               <i>#</i>React
             </Title>
-            <Amount>321</Amount>
+            <Amount>{react}</Amount>
             <SubTitle>
               posts posted about <FaReact />
             </SubTitle>
@@ -30,7 +40,7 @@ const Stats = () => {
             <Title>
               <i>#</i>HTML
             </Title>
-            <Amount>222</Amount>
+            <Amount>{html}</Amount>
             <SubTitle>
               posts posted about <FaHtml5 />
             </SubTitle>
@@ -39,7 +49,7 @@ const Stats = () => {
             <Title>
               <i>#</i>JavaScript
             </Title>
-            <Amount>599</Amount>
+            <Amount>{js}</Amount>
             <SubTitle>
               posts posted about <SiJavascript />
             </SubTitle>
@@ -48,7 +58,7 @@ const Stats = () => {
             <Title>
               <i>#</i>CSS
             </Title>
-            <Amount>323</Amount>
+            <Amount>{css}</Amount>
             <SubTitle>
               posts posted about <DiCss3 />
             </SubTitle>
@@ -57,7 +67,7 @@ const Stats = () => {
             <Title>
               <i>#</i>Others
             </Title>
-            <Amount>7878</Amount>
+            <Amount>{others}</Amount>
             <SubTitle>
               posts posted about <DiCodeigniter />
             </SubTitle>

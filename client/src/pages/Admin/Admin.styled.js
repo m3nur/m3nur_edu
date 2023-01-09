@@ -178,8 +178,8 @@ export const RBottomTitle = styled.span`
 `;
 
 export const Chart = styled.div`
-  width: 320px;
-  height: 330px;
+  width: 310px;
+  height: 310px;
 `;
 
 export const RRight = styled.div`
@@ -197,6 +197,7 @@ export const StatsUL = styled.ul`
 `;
 
 export const StatsLI = styled.li`
+  width: 100%;
   padding: 6px 10px;
   border: 1px solid;
   border-radius: 8px;
@@ -276,14 +277,14 @@ export const PostsList = styled.ul`
   }
   &::-webkit-scrollbar-thumb {
     background-color: white;
-    outline: 1px solid;
+    border-radius: 4px;
   }
 `;
 
 export const PostsListLI = styled.li`
   border: 1px solid white;
   border-radius: 8px;
-  margin-bottom: 11px;
+  margin-bottom: 13px;
   padding: 8px 6px;
   font-size: 22px;
   background-color: white;

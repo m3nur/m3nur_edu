@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Bottom,
   BottomWrapper,
@@ -14,16 +14,32 @@ import {
   Tags,
   Title,
   Top,
-} from './Product.styled';
-import { Container } from '@mui/system';
+} from "./Product.styled";
+import { Container } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/apiCalls";
 
 const Product = () => {
+  const dispatch = useDispatch();
+  const goldVault = useSelector((state) =>
+    state.goldVault.goldVault.filter((el) => el.recommended)
+  );
+  const [tagValue, setTagValue] = useState("");
+  const handleClick = (e) => {
+    setTagValue(e);
+  };
+  const recommended = goldVault.filter((el) => el.tags.includes(tagValue));
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch, tagValue]);
+
   return (
     <ProductPresentation>
       <Container>
         <Presentation>
           <Top>
-            <Title>Our Recent Posts.</Title>
+            <Title>THE BEST SITES WE RECOMMEND.</Title>
             <SubTitle>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque,
               neque.
@@ -31,62 +47,79 @@ const Product = () => {
           </Top>
           <Bottom>
             <Tabs>
-              <Tab>All</Tab>
-              <Tab>#ReactJS</Tab>
-              <Tab>JS</Tab>
-              <Tab>HTML</Tab>
-              <Tab>CSS</Tab>
-              <Tab>Animation</Tab>
-              <Tab>Photos</Tab>
+              <Tab
+                name=""
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #All
+              </Tab>
+              <Tab
+                name="JavaScript"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #JavaScript
+              </Tab>
+              <Tab
+                name="HTML"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #HTML
+              </Tab>
+              <Tab
+                name="react"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #React
+              </Tab>
+              <Tab
+                name="CSS"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #CSS
+              </Tab>
+              <Tab
+                name="animation"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #Animation
+              </Tab>
+              <Tab
+                name="photo"
+                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+              >
+                #Photo
+              </Tab>
             </Tabs>
             <BottomWrapper>
-              <Small>
-                <PresentTitle>Animista.net</PresentTitle>
-                <PresentSubTitle>
-                  Animista is a place where you can play with a collection of
-                  pre-made css animations.
-                </PresentSubTitle>
-                <Tag>
-                  <Tags>#CSS</Tags>
-                  <Tags>#Animation</Tags>
-                </Tag>
-              </Small>
-              <Small>
-                <PresentTitle>Svgartista.net</PresentTitle>
-                <PresentSubTitle>
-                  Super handy SVG drawing animation tool.
-                </PresentSubTitle>
-                <Tag>
-                  <Tags>#CSS</Tags>
-                  <Tags>#Animation</Tags>
-                </Tag>
-              </Small>
-              <Small>
-                <PresentTitle>Fonts.Google.com</PresentTitle>
-                <PresentSubTitle>
-                  Google Fonts is a library of 1474 open source font families
-                  and APIs for convenient use via CSS and Android.
-                </PresentSubTitle>
-                <Tag>
-                  <Tags>#HTML</Tags>
-                  <Tags>#CSS</Tags>
-                  <Tags>#Others</Tags>
-                </Tag>
-              </Small>
-              <Small>
-                <PresentTitle>Dev.to</PresentTitle>
-                <PresentSubTitle>
-                  A constructive and inclusive social network for software
-                  developers. With you every step of your journey.
-                </PresentSubTitle>
-                <Tag>
-                  <Tags>#Others</Tags>
-                  <Tags>#React</Tags>
-                  <Tags>#HTML</Tags>
-                  <Tags>#CSS</Tags>
-                  <Tags>#JS</Tags>
-                </Tag>
-              </Small>
+              {tagValue ? (
+                <>
+                  {recommended?.map((el) => (
+                    <Small key={el._id}>
+                      <PresentTitle>{el.title}</PresentTitle>
+                      <PresentSubTitle>{el.desc}</PresentSubTitle>
+                      <Tag>
+                        {el.tags?.map((el, index) => (
+                          <Tags key={index}>#{el}</Tags>
+                        ))}
+                      </Tag>
+                    </Small>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {goldVault?.map((el) => (
+                    <Small key={el._id}>
+                      <PresentTitle>{el.title}</PresentTitle>
+                      <PresentSubTitle>{el.desc}</PresentSubTitle>
+                      <Tag>
+                        {el.tags?.map((el, index) => (
+                          <Tags key={index}>#{el}</Tags>
+                        ))}
+                      </Tag>
+                    </Small>
+                  ))}
+                </>
+              )}
             </BottomWrapper>
           </Bottom>
         </Presentation>

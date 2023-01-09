@@ -37,9 +37,9 @@ import { FaHtml5, FaReact } from "react-icons/fa";
 import { SiJavascript } from "react-icons/si";
 import { DiCodeigniter, DiCss3 } from "react-icons/di";
 import { FiPlus } from "react-icons/fi";
+import { CiVault } from "react-icons/ci";
 import adminCat from "../../image/catAdmin.avif";
 import { MyResponsivePie } from "../../components/Chart/Chart";
-import { data } from "../data";
 import { BiShow, BiPencil, BiTrash } from "react-icons/bi";
 import { Search } from "@mui/icons-material";
 import { Modal } from "../../components";
@@ -71,6 +71,42 @@ const Admin = () => {
   const handleDelete = (id) => {
     deleteProduct(dispatch, id);
   };
+
+  const value = [];
+  goldVault.map((el) => el.tags.forEach((el) => value.push(el.toLowerCase())));
+  const react = value.filter((el) => el === "react").length;
+  const js = value.filter((el) => el === "javascript").length;
+  const html = value.filter((el) => el === "html").length;
+  const css = value.filter((el) => el === "css").length;
+  const others = value.length - (react + js + html + css);
+
+  const data = [
+    {
+      id: "ReactJS",
+      value: react,
+      color: "hsl(232, 70%, 50%)",
+    },
+    {
+      id: "JavaScript",
+      value: js,
+      color: "hsl(327, 70%, 50%)",
+    },
+    {
+      id: "HTML",
+      value: html,
+      color: "hsl(339, 70%, 50%)",
+    },
+    {
+      id: "CSS",
+      value: css,
+      color: "hsl(312, 70%, 50%)",
+    },
+    {
+      id: "Others",
+      value: others,
+      color: "hsl(291, 70%, 50%)",
+    },
+  ];
 
   return (
     <Dashboard>
@@ -144,7 +180,9 @@ const Admin = () => {
           <Right>
             <RLeft>
               <RTop>
-                <Title>Manage your posts</Title>
+                <Title style={{ marginBottom: "10px" }}>
+                  Manage your posts
+                </Title>
                 <SubTitle>
                   Create, edit and delete your posts and some statistics
                 </SubTitle>
@@ -156,19 +194,22 @@ const Admin = () => {
                 </Chart>
                 <StatsUL>
                   <StatsLI>
-                    <FaReact /> 218 posts.
+                    <FaReact /> {react} posts.
                   </StatsLI>
                   <StatsLI>
-                    <FaHtml5 /> 314 posts.
+                    <FaHtml5 /> {html} posts.
                   </StatsLI>
                   <StatsLI>
-                    <SiJavascript /> 62 posts.
+                    <SiJavascript /> {js} posts.
                   </StatsLI>
                   <StatsLI>
-                    <DiCss3 /> 90 posts.
+                    <DiCss3 /> {css} posts.
                   </StatsLI>
                   <StatsLI>
-                    <DiCodeigniter /> 410 posts.
+                    <DiCodeigniter /> {others} posts.
+                  </StatsLI>
+                  <StatsLI>
+                    <CiVault /> {value.length} posts.
                   </StatsLI>
                 </StatsUL>
               </RBottom>
