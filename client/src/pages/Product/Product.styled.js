@@ -65,33 +65,78 @@ export const Tab = styled.li`
 `;
 
 export const Small = styled.div`
-  border: 1px solid;
-  padding: 20px;
+  border: 1px solid #6969d7;
   border-radius: 8px;
-  width: 300px;
+  width: 370px;
   height: 100%;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.1);
+  }
 `;
 
-export const PresentTitle = styled.h2``;
+export const SmallWrapper = styled.div`
+padding: 15px 20px 15px;
+`;
+
+export const PresentTitle = styled.h2`
+  font-size: 28px;
+`;
 
 export const PresentSubTitle = styled.p`
   margin: 10px 0;
+  height: 80px;
+  overflow: hidden;
 `;
 
 export const Tag = styled.ul`
   display: flex;
+
+  &.bottomBTNs {
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 20px;
+  }
 `;
 
 export const Tags = styled.li`
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 5px;
+  background-color: #6969d7;
+  color: white;
 
-  &:hover {
-    background-color: #6969d7;
-    color: white;
+  &.bottomBTN {
+    background: none;
+    color: #6969d7;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
   }
+`;
+
+export const Button = styled.button`
+  padding: 2px 10px;
+  font-size: 30px;
+  background: white;
+  border: 2px solid #6969d7;
+  border-radius: 8px;
+  width: 14em;
+  outline: none;
+  margin-top: 20px;
+  cursor: pointer;
+  color: #6969d7;
+`;
+
+export const HR = styled.hr`
+      margin: 0 20px 10px;
+  background-color: #6969d7;
 `;

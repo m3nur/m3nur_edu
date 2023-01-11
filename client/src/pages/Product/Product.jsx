@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import {
   Bottom,
   BottomWrapper,
+  Button,
+  HR,
   Presentation,
   PresentSubTitle,
   PresentTitle,
   ProductPresentation,
   Small,
+  SmallWrapper,
   SubTitle,
   Tab,
   Tabs,
@@ -17,7 +20,11 @@ import {
 } from "./Product.styled";
 import { Container } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/apiCalls";
+import { getProducts, visitProduct } from "../../redux/apiCalls";
+import { Link } from "react-router-dom";
+import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
+import { IoStatsChartOutline } from "react-icons/io5";
+import { Modal } from "../../components";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -30,12 +37,52 @@ const Product = () => {
   };
   const recommended = goldVault.filter((el) => el.tags.includes(tagValue));
 
+  const [modal, setModal] = useState({
+    modalDisplay: {
+      display: false,
+      product: {},
+    },
+    modalShare: {
+      display: false,
+      product: {},
+    },
+  });
+
+  const handleIncrement = (id, visit) => {
+    const product = { visit: visit + 1 };
+    visitProduct(dispatch, id, product);
+  };
+
   useEffect(() => {
     getProducts(dispatch);
-  }, [dispatch, tagValue]);
+  }, [dispatch, tagValue, modal]);
 
   return (
     <ProductPresentation>
+      <Modal
+        whoIam={"display"}
+        isOpened={modal.modalDisplay}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalDisplay: {
+              display: false,
+            },
+          })
+        }
+      />
+      <Modal
+        whoIam={"share"}
+        isOpened={modal.modalShare}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalShare: {
+              display: false,
+            },
+          })
+        }
+      />
       <Container>
         <Presentation>
           <Top>
@@ -95,12 +142,48 @@ const Product = () => {
                 <>
                   {recommended?.map((el) => (
                     <Small key={el._id}>
-                      <PresentTitle>{el.title}</PresentTitle>
-                      <PresentSubTitle>{el.desc}</PresentSubTitle>
-                      <Tag>
-                        {el.tags?.map((el, index) => (
-                          <Tags key={index}>#{el}</Tags>
-                        ))}
+                      <SmallWrapper
+                        onClick={() => {
+                          setModal({
+                            ...modal,
+                            modalDisplay: {
+                              display: true,
+                              product: el._id,
+                            },
+                          });
+                          handleIncrement(el._id, el.visit);
+                        }}
+                      >
+                        <PresentTitle>{el.title}</PresentTitle>
+                        <PresentSubTitle>{el.desc}</PresentSubTitle>
+                        <Tag>
+                          {el.tags?.map((el, index) => (
+                            <Tags key={index}>#{el}</Tags>
+                          ))}
+                        </Tag>
+                      </SmallWrapper>
+                      <HR />
+                      <Tag className="bottomBTNs">
+                        <Tags className="bottomBTN">
+                          <IoStatsChartOutline /> {el.visit}
+                        </Tags>
+                        <Tags
+                          className="bottomBTN"
+                          onClick={() =>
+                            setModal({
+                              ...modal,
+                              modalShare: {
+                                display: true,
+                                product: el._id,
+                              },
+                            })
+                          }
+                        >
+                          <AiOutlineShareAlt />
+                        </Tags>
+                        <Tags className="bottomBTN">
+                          <AiOutlineHeart />
+                        </Tags>
                       </Tag>
                     </Small>
                   ))}
@@ -109,12 +192,49 @@ const Product = () => {
                 <>
                   {goldVault?.map((el) => (
                     <Small key={el._id}>
-                      <PresentTitle>{el.title}</PresentTitle>
-                      <PresentSubTitle>{el.desc}</PresentSubTitle>
-                      <Tag>
-                        {el.tags?.map((el, index) => (
-                          <Tags key={index}>#{el}</Tags>
-                        ))}
+                      <SmallWrapper
+                        onClick={() => {
+                          setModal({
+                            ...modal,
+                            modalDisplay: {
+                              display: true,
+                              product: el._id,
+                            },
+                          });
+                          handleIncrement(el._id, el.visit);
+                        }}
+                      >
+                        <PresentTitle>{el.title}</PresentTitle>
+                        <PresentSubTitle>{el.desc}</PresentSubTitle>
+                        <Tag>
+                          {el.tags?.map((el, index) => (
+                            <Tags key={index}>#{el}</Tags>
+                          ))}
+                        </Tag>
+                      </SmallWrapper>
+                      <HR />
+                      <Tag className="bottomBTNs">
+                        <Tags className="bottomBTN">
+                          <IoStatsChartOutline /> {el.visit}
+                        </Tags>
+                        <Tags
+                          className="bottomBTN"
+                          onClick={() =>
+                            setModal({
+                              ...modal,
+                              modalShare: {
+                                display: true,
+                                product: el._id,
+                              },
+                            })
+                          }
+                        >
+                          <AiOutlineShareAlt />
+                        </Tags>
+                        <Tags className="bottomBTN">
+                          <AiOutlineHeart />
+                          {el.likes.length}
+                        </Tags>
                       </Tag>
                     </Small>
                   ))}
@@ -122,6 +242,13 @@ const Product = () => {
               )}
             </BottomWrapper>
           </Bottom>
+          <Link
+            to="/goldVault"
+            target="_blank"
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Button>SHOW MORE</Button>
+          </Link>
         </Presentation>
       </Container>
     </ProductPresentation>

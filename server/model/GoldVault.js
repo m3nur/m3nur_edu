@@ -25,6 +25,7 @@ const GoldVaultSchema = new mongoose.Schema(
     },
     visit: {
       type: Number,
+      default: 1,
     },
     recommended: {
       type: Boolean,
