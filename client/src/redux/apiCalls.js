@@ -153,7 +153,6 @@ export const deleteProduct = async (dispatch, id) => {
 export const updateProduct = async (dispatch, id, product) => {
   dispatch(updateProductStart());
   const upd = toast.loading("Please wait...");
-
   try {
     const res = await request.put(`/products/${id}`, product, {
       headers: {
@@ -178,5 +177,15 @@ export const updateProduct = async (dispatch, id, product) => {
       isLoading: false,
       autoClose: 2000,
     });
+  }
+};
+
+export const visitProduct = async (dispatch, id, product) => {
+  dispatch(updateProductStart());
+  try {
+    const res = await request.put(`/products/visit/${id}`, product);
+    dispatch(updateProductSuccess(res.data, id));
+  } catch (err) {
+    dispatch(updateProductFailure());
   }
 };

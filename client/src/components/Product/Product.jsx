@@ -29,7 +29,7 @@ const Product = (props) => {
       <SubTitle>{productFromDisplay?.desc}</SubTitle>
       <Tags>
         {productFromDisplay?.tags?.map((el) => (
-          <Link key={el} to={`/${el}`} target="_blank">
+          <Link key={el} to={`/${el}`}>
             <Tag>#{el}</Tag>
           </Link>
         ))}

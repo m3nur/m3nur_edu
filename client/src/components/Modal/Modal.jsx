@@ -9,6 +9,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import Product from "../Product/Product";
+import Share from "../Share/Share";
 
 const Modal = (props) => {
   const ID = props?.isOpened.product;
@@ -62,6 +63,23 @@ const Modal = (props) => {
               }}
             />
             <CreateProduct />
+          </ModalBody>
+        </ModalCenter>
+      )}
+      {props.isOpened.display && props.whoIam === "share" && (
+        <ModalCenter>
+          <ModalBody>
+            <ModalClose onClick={props.onModalClose}>
+              <IoCloseOutline />
+            </ModalClose>
+            <hr
+              style={{
+                height: "1px",
+                backgroundColor: "#6969d7",
+                border: "none",
+              }}
+            />
+            <Share props={ID} />
           </ModalBody>
         </ModalCenter>
       )}

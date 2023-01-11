@@ -7,6 +7,7 @@ import Modal from "./Modal/Modal";
 import CreateProduct from "./CreateProduct/CreateProduct";
 import Product from "./Product/Product";
 import UpdateProduct from "./UpdateProduct/UpdateProduct";
+import Share from "./Share/Share";
 
 export {
   Topbar,
@@ -18,4 +19,5 @@ export {
   CreateProduct,
   Product,
   UpdateProduct,
+  Share,
 };
