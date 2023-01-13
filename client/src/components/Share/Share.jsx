@@ -32,7 +32,6 @@ const Share = (props) => {
   const productFromShare = useSelector((state) =>
     state.goldVault.goldVault.find((el) => el._id === props.props)
   );
-  console.log(productFromShare);
   const shareUrl = `http://localhost:3000/${productFromShare._id}`;
 
   return (
@@ -44,7 +43,9 @@ const Share = (props) => {
             url={shareUrl}
             title="THE BEST SITES WE RECOMMEND!"
           >
-            <TelegramIcon size={50} round={true} />
+            <a href={shareUrl} target="_blank" rel="noreferrer">
+              <TelegramIcon size={50} round={true} />
+            </a>
           </TelegramShareButton>
         </SocialNetwork>
         <SocialNetwork>

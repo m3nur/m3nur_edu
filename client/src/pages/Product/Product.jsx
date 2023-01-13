@@ -10,6 +10,7 @@ import {
   ProductPresentation,
   Small,
   SmallWrapper,
+  StatValue,
   SubTitle,
   Tab,
   Tabs,
@@ -20,23 +21,35 @@ import {
 } from "./Product.styled";
 import { Container } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, visitProduct } from "../../redux/apiCalls";
+import {
+  getProducts,
+  likeProduct,
+  unLikeProduct,
+  visitProduct,
+} from "../../redux/apiCalls";
 import { Link } from "react-router-dom";
-import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 import { IoStatsChartOutline } from "react-icons/io5";
 import { Modal } from "../../components";
 
+//There is a problem here, when you click on the component, it is rendered 3 times, you need to solve
+
 const Product = () => {
   const dispatch = useDispatch();
-  const goldVault = useSelector((state) =>
-    state.goldVault.goldVault.filter((el) => el.recommended)
+  const goldVault = useSelector(
+    (state) =>
+      state.goldVault.goldVault
+        .filter((el) => el.recommended)
+        .sort((a, b) => b.visit - a.visit) //Sorting by likes will be better than visiting)
   );
+  const success = useSelector((state) => state.goldVault.success);
+  const userID = useSelector((state) => state.user.user._id);
   const [tagValue, setTagValue] = useState("");
   const handleClick = (e) => {
     setTagValue(e);
   };
   const recommended = goldVault.filter((el) => el.tags.includes(tagValue));
-
+  const [render, setRender] = useState();
   const [modal, setModal] = useState({
     modalDisplay: {
       display: false,
@@ -53,9 +66,20 @@ const Product = () => {
     visitProduct(dispatch, id, product);
   };
 
+  const handleLike = (id) => {
+    const productID = goldVault.filter((el) => el._id.includes(id));
+    const val = productID[0].likes.includes(userID);
+    setRender(val + new Date().getTime());
+    if (val) {
+      unLikeProduct(dispatch, productID, userID);
+    } else {
+      likeProduct(dispatch, productID, userID);
+    }
+  };
+
   useEffect(() => {
-    getProducts(dispatch);
-  }, [dispatch, tagValue, modal]);
+    success && getProducts(dispatch);
+  }, [dispatch, render, success]);
 
   return (
     <ProductPresentation>
@@ -164,11 +188,12 @@ const Product = () => {
                       </SmallWrapper>
                       <HR />
                       <Tag className="bottomBTNs">
-                        <Tags className="bottomBTN">
-                          <IoStatsChartOutline /> {el.visit}
+                        <Tags className="bottomBTN chart">
+                          <IoStatsChartOutline style={{ fontSize: "20px" }} />
+                          <StatValue>{el.visit}</StatValue>
                         </Tags>
                         <Tags
-                          className="bottomBTN"
+                          className="bottomBTN share"
                           onClick={() =>
                             setModal({
                               ...modal,
@@ -181,8 +206,16 @@ const Product = () => {
                         >
                           <AiOutlineShareAlt />
                         </Tags>
-                        <Tags className="bottomBTN">
-                          <AiOutlineHeart />
+                        <Tags
+                          className="bottomBTN heart"
+                          onClick={() => handleLike(el._id)}
+                        >
+                          {el?.likes?.includes(userID) ? (
+                            <AiFillHeart style={{ color: "red" }} />
+                          ) : (
+                            <AiOutlineHeart />
+                          )}
+                          <StatValue>{el.likes.length}</StatValue>
                         </Tags>
                       </Tag>
                     </Small>
@@ -214,11 +247,12 @@ const Product = () => {
                       </SmallWrapper>
                       <HR />
                       <Tag className="bottomBTNs">
-                        <Tags className="bottomBTN">
-                          <IoStatsChartOutline /> {el.visit}
+                        <Tags className="bottomBTN chart">
+                          <IoStatsChartOutline style={{ fontSize: "20px" }} />
+                          <StatValue>{el.visit}</StatValue>
                         </Tags>
                         <Tags
-                          className="bottomBTN"
+                          className="bottomBTN share"
                           onClick={() =>
                             setModal({
                               ...modal,
@@ -231,9 +265,16 @@ const Product = () => {
                         >
                           <AiOutlineShareAlt />
                         </Tags>
-                        <Tags className="bottomBTN">
-                          <AiOutlineHeart />
-                          {el.likes.length}
+                        <Tags
+                          className="bottomBTN heart"
+                          onClick={() => handleLike(el._id)}
+                        >
+                          {el?.likes?.includes(userID) ? (
+                            <AiFillHeart className="red" />
+                          ) : (
+                            <AiOutlineHeart />
+                          )}
+                          <StatValue>{el.likes.length}</StatValue>
                         </Tags>
                       </Tag>
                     </Small>

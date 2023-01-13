@@ -7,11 +7,11 @@ import {
   Top,
   TopWrapper,
   Wrapper,
-} from './Home.styled';
-import { HomeLogo } from '../../components';
-import { Container } from '@mui/system';
-import { Stats } from '../../components';
-import Product from '../Product/Product';
+} from "./Home.styled";
+import { HomeLogo } from "../../components";
+import { Container } from "@mui/system";
+import { Stats } from "../../components";
+import Product from "../Product/Product";
 
 const Home = () => {
   return (
@@ -21,7 +21,7 @@ const Home = () => {
           <Top>
             <TopWrapper>
               <Title>
-                Grow faster with the <i style={{ color: '#6969d7' }}>M3NUR</i>{' '}
+                Grow faster with the <i style={{ color: "#6969d7" }}>M3NUR</i>{" "}
                 team!
               </Title>
               <SubTitle>
