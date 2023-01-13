@@ -4,6 +4,7 @@ const initialState = {
   goldVault: [],
   isFetching: false,
   error: false,
+  success: false,
 };
 
 export const goldVaultSlice = createSlice({
@@ -55,6 +56,7 @@ export const goldVaultSlice = createSlice({
     updateProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
+      state.success = false;
     },
     updateProductSuccess: (state, action) => {
       state.isFetching = false;
@@ -62,10 +64,12 @@ export const goldVaultSlice = createSlice({
         state.goldVault.findIndex((item) => item._id === action.payload.id)
       ] = action.payload.goldVault;
       state.error = false;
+      state.success = true;
     },
     updateProductFailure: (state) => {
       state.isFetching = false;
       state.error = true;
+      state.success = false;
     },
   },
 });

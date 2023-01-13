@@ -45,3 +45,53 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+export const visitProduct = async (req, res) => {
+  try {
+    const visitProduct = await GoldVault.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(visitProduct);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const likeProduct = async (req, res) => {
+  try {
+    const likeProduct = await GoldVault.findByIdAndUpdate(
+      req.body.productID,
+      {
+        $push: { likes: req.body.userID },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(likeProduct);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const unLikeProduct = async (req, res) => {
+  try {
+    const likeProduct = await GoldVault.findByIdAndUpdate(
+      req.body.productID,
+      {
+        $pull: { likes: req.body.userID },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(likeProduct);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

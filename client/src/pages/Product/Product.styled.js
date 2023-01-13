@@ -78,7 +78,7 @@ export const Small = styled.div`
 `;
 
 export const SmallWrapper = styled.div`
-padding: 15px 20px 15px;
+  padding: 15px 20px 15px;
 `;
 
 export const PresentTitle = styled.h2`
@@ -113,13 +113,32 @@ export const Tags = styled.li`
   &.bottomBTN {
     background: none;
     color: #6969d7;
-    font-size: 24px;
+    font-size: 22px;
     padding: 0;
     margin: 0;
     border: none;
     border-radius: 0;
     display: flex;
     align-items: center;
+    transition: all 0.2s ease;
+  }
+
+  svg:hover {
+    transform: scale(1.1);
+  }
+
+  &.chart:hover {
+    svg {
+      color: yellow;
+    }
+  }
+  &.share:hover {
+    color: green;
+  }
+  &.heart {
+    .red {
+      color: red;
+    }
   }
 `;
 
@@ -137,6 +156,11 @@ export const Button = styled.button`
 `;
 
 export const HR = styled.hr`
-      margin: 0 20px 10px;
+  margin: 0 20px 10px;
   background-color: #6969d7;
+`;
+
+export const StatValue = styled.span`
+  font-size: 16px;
+  margin-left: 6px;
 `;

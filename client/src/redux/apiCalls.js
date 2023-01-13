@@ -189,3 +189,29 @@ export const visitProduct = async (dispatch, id, product) => {
     dispatch(updateProductFailure());
   }
 };
+
+export const likeProduct = async (dispatch, productID, userID) => {
+  dispatch(updateProductStart());
+  try {
+    const res = await request.put("/products/like", {
+      productID: productID,
+      userID: userID,
+    });
+    dispatch(updateProductSuccess(res.data, productID));
+  } catch (err) {
+    dispatch(updateProductFailure());
+  }
+};
+
+export const unLikeProduct = async (dispatch, productID, userID) => {
+  dispatch(updateProductStart());
+  try {
+    const res = await request.put("/products/unlike", {
+      productID: productID,
+      userID: userID,
+    });
+    dispatch(updateProductSuccess(res.data, productID));
+  } catch (err) {
+    dispatch(updateProductFailure());
+  }
+};
