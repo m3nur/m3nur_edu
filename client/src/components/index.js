@@ -8,6 +8,7 @@ import CreateProduct from "./CreateProduct/CreateProduct";
 import Product from "./Product/Product";
 import UpdateProduct from "./UpdateProduct/UpdateProduct";
 import Share from "./Share/Share";
+import Message from "./Message/Message";
 
 export {
   Topbar,
@@ -20,4 +21,5 @@ export {
   Product,
   UpdateProduct,
   Share,
+  Message,
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import { logout } from '../../redux/apiCalls';
-import Logo from '../Logo/Logo';
+import React from "react";
+import { logout } from "../../redux/apiCalls";
+import Logo from "../Logo/Logo";
 import {
   SearchContainer,
   SearchInput,
@@ -9,11 +9,11 @@ import {
   TopbarWrapper,
   TopLeft,
   TopRight,
-} from './Topbar..styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { Search } from '@mui/icons-material';
-import { Container } from '@mui/material';
+} from "./Topbar..styled";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Search } from "@mui/icons-material";
+import { Container } from "@mui/material";
 
 const Topbar = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Topbar = () => {
 
   const handleClick = () => {
     logout(dispatch);
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -35,18 +35,18 @@ const Topbar = () => {
             </Link>
             <SearchContainer>
               <SearchInput placeholder="Search..." />
-              <Search />
+              <Search style={{ color: "#6969d7" }} />
             </SearchContainer>
           </TopLeft>
           <TopRight>
             {user === null ? (
               <>
-                <TopbarIconContainer>
-                  <Link to="/login">Login</Link>
-                </TopbarIconContainer>
-                <TopbarIconContainer>
-                  <Link to="/register">Create account</Link>
-                </TopbarIconContainer>
+                <Link to="/login">
+                  <TopbarIconContainer>Login</TopbarIconContainer>
+                </Link>
+                <Link to="/register">
+                  <TopbarIconContainer>Create account</TopbarIconContainer>
+                </Link>
               </>
             ) : (
               <TopbarIconContainer onClick={handleClick}>

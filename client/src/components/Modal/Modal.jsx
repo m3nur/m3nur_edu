@@ -10,6 +10,7 @@ import CreateProduct from "../CreateProduct/CreateProduct";
 import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import Product from "../Product/Product";
 import Share from "../Share/Share";
+import Message from "../Message/Message";
 
 const Modal = (props) => {
   const ID = props?.isOpened.product;
@@ -80,6 +81,23 @@ const Modal = (props) => {
               }}
             />
             <Share props={ID} />
+          </ModalBody>
+        </ModalCenter>
+      )}
+      {props.isOpened.display && props.whoIam === "message" && (
+        <ModalCenter>
+          <ModalBody className="message">
+            <ModalClose onClick={props.onModalClose}>
+              <IoCloseOutline />
+            </ModalClose>
+            <hr
+              style={{
+                height: "1px",
+                backgroundColor: "#6969d7",
+                border: "none",
+              }}
+            />
+            <Message />
           </ModalBody>
         </ModalCenter>
       )}

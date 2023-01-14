@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/goldVault.js";
+import messageRoutes from "./routes/message.js";
 import dbConnect from "./config/dbConnect.js";
 import router from "express";
 const PORT = process.env.PORT || 6001;
@@ -43,6 +44,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
+app.use("/message", messageRoutes);
 
 dbConnect();
 

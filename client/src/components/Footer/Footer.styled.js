@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterContainer = styled.div`
   background-color: #6969d7;
@@ -76,7 +76,7 @@ export const Gmail = styled.div`
   margin: 20px 0;
 `;
 
-export const GmailLink = styled.a`
+export const GmailLink = styled.button`
   cursor: pointer;
   font-size: 18px;
   padding: 8px 10px;
@@ -84,6 +84,7 @@ export const GmailLink = styled.a`
   background: white;
   color: #6969d7;
   font-weight: 600;
+  border: 1px solid;
 `;
 
 export const FooterBottom = styled.div``;

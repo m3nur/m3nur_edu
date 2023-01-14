@@ -37,6 +37,10 @@ export const ModalBody = styled.div`
   &.update {
     width: 800px;
   }
+
+  &.message {
+    width: 600px;
+  }
 `;
 
 export const ModalClose = styled.div`

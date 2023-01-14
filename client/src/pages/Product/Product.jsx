@@ -43,7 +43,7 @@ const Product = () => {
         .sort((a, b) => b.visit - a.visit) //Sorting by likes will be better than visiting)
   );
   const success = useSelector((state) => state.goldVault.success);
-  const userID = useSelector((state) => state.user.user._id);
+  const userID = useSelector((state) => state.user?.user?._id);
   const [tagValue, setTagValue] = useState("");
   const handleClick = (e) => {
     setTagValue(e);
