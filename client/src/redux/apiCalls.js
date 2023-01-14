@@ -23,6 +23,7 @@ import {
   updateProductStart,
   updateProductSuccess,
 } from "./goldVaultSlice";
+import { messageFailure, messageStart, messageSuccess } from "./messageSlice";
 
 const BASE_URL = "http://localhost:6001/";
 
@@ -97,7 +98,7 @@ export const createProduct = async (dispatch, product) => {
       render: "The new product has been successfully added to the vault.",
       type: "success",
       isLoading: false,
-      autoClose: 2000,
+      autoClose: 1000,
     });
   } catch (err) {
     dispatch(createFailure());
@@ -213,5 +214,28 @@ export const unLikeProduct = async (dispatch, productID, userID) => {
     dispatch(updateProductSuccess(res.data, productID));
   } catch (err) {
     dispatch(updateProductFailure());
+  }
+};
+
+export const addMessage = async (dispatch, message) => {
+  dispatch(messageStart());
+  const add = toast.loading("Please wait...");
+  try {
+    const res = await request.post("/message", message);
+    dispatch(messageSuccess(res.data));
+    toast.update(add, {
+      render: "Thank you for your message and for helping us get better.",
+      type: "success",
+      isLoading: false,
+      autoClose: 2000,
+    });
+  } catch (err) {
+    dispatch(messageFailure());
+    toast.update(add, {
+      render: "Something went wrong, please resend the message or email us",
+      type: "error",
+      isLoading: false,
+      autoClose: 2000,
+    });
   }
 };

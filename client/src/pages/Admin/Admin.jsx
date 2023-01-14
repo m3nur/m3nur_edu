@@ -220,7 +220,7 @@ const Admin = () => {
                   <PostTitle>Latest Posts</PostTitle>
                   <SearchContainer>
                     <SearchInput placeholder="Search..." />
-                    <Search />
+                    <Search style={{ color: "#6969d7" }} />
                   </SearchContainer>
                 </PostWrapper>
                 <PostsList>

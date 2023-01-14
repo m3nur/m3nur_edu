@@ -5,9 +5,9 @@ import {
   LinkedIn,
   Telegram,
   Twitter,
-} from '@mui/icons-material';
-import { Container } from '@mui/system';
-import React from 'react';
+} from "@mui/icons-material";
+import { Container } from "@mui/system";
+import React, { useState } from "react";
 import {
   BottomLeft,
   BottomRight,
@@ -31,12 +31,30 @@ import {
   WrapperLeftH2,
   WrapperLeftLi,
   WrapperLeftUl,
-} from './Footer.styled';
-import OurWebSite from '../../image/OurWebSIte.png';
+} from "./Footer.styled";
+import OurWebSite from "../../image/OurWebSIte.png";
+import { Modal } from "../../components";
 
 const Footer = () => {
+  const [modal, setModal] = useState({
+    modalMessage: {
+      display: false,
+    },
+  });
   return (
     <FooterContainer>
+      <Modal
+        whoIam={"message"}
+        isOpened={modal.modalMessage}
+        onModalClose={() =>
+          setModal({
+            ...modal,
+            modalMessage: {
+              display: false,
+            },
+          })
+        }
+      />
       <FooterTop>
         <Container>
           <FooterTopWrapper>
@@ -44,12 +62,19 @@ const Footer = () => {
               <Title>WE WOULD LIKE TO HEAR FROM YOU</Title>
               <SubTitle>
                 Do you have a question or want to support our project? For all
-                support and technical questions, please email:
+                support and technical questions, please email or ...:
               </SubTitle>
-              <Gmail>
-                <GmailLink href="mailto:nurbek.itu@gmail.com">
-                  nurbek.itu@gmail.com
-                </GmailLink>
+              <Gmail
+                onClick={() =>
+                  setModal({
+                    ...modal,
+                    modalMessage: {
+                      display: true,
+                    },
+                  })
+                }
+              >
+                <GmailLink>ASK QUESTION</GmailLink>
               </Gmail>
             </TopLeft>
             <TopRight>
@@ -74,7 +99,7 @@ const Footer = () => {
             <BottomLeft>
               Made with <Favorite /> by
               <IconItemsLink
-                style={{ textDecoration: 'underline', margin: '0 5px' }}
+                style={{ textDecoration: "underline", margin: "0 5px" }}
                 href="https://github.com/NurMura88"
                 target="_blank"
               >

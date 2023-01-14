@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import goldVaultReducer from "./goldVaultSlice";
+import messageReducer from "./messageSlice";
 import {
   persistStore,
   persistReducer,
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   goldVault: goldVaultReducer,
+  messages: messageReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
