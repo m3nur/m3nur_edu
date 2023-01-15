@@ -76,7 +76,7 @@ export const Tags = styled.ul`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin: 22px 0;
+  margin: 18px 0 10px;
 `;
 
 export const Tag = styled.li`

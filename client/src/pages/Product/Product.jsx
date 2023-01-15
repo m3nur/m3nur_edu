@@ -49,7 +49,6 @@ const Product = () => {
     setTagValue(e);
   };
   const recommended = goldVault.filter((el) => el.tags.includes(tagValue));
-  const [render, setRender] = useState();
   const [modal, setModal] = useState({
     modalDisplay: {
       display: false,
@@ -69,7 +68,6 @@ const Product = () => {
   const handleLike = (id) => {
     const productID = goldVault.filter((el) => el._id.includes(id));
     const val = productID[0].likes.includes(userID);
-    setRender(val + new Date().getTime());
     if (val) {
       unLikeProduct(dispatch, productID, userID);
     } else {
@@ -79,7 +77,7 @@ const Product = () => {
 
   useEffect(() => {
     success && getProducts(dispatch);
-  }, [dispatch, render, success]);
+  }, [dispatch, success]);
 
   return (
     <ProductPresentation>
