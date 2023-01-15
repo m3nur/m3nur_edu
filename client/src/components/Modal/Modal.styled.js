@@ -17,6 +17,11 @@ export const ModalWrapper = styled.div`
     height: 0;
     display: none;
   }
+
+  &.admintrue {
+    position: absolute;
+    z-index: 1;
+  }
 `;
 
 export const ModalCenter = styled.div`

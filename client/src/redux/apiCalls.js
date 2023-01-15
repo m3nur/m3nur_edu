@@ -24,6 +24,10 @@ import {
   updateProductSuccess,
 } from "./goldVaultSlice";
 import {
+  deleteMessageSuccess,
+  getMessageFailure,
+  getMessageStart,
+  getMessageSuccess,
   messageFailure,
   messageStart,
   messageSuccess,
@@ -237,6 +241,53 @@ export const addMessage = async (dispatch, message) => {
     dispatch(messageFailure());
     toast.update(add, {
       render: "Something went wrong, please resend the message or email us",
+      type: "error",
+      isLoading: false,
+      autoClose: 2000,
+    });
+  }
+};
+
+export const getMessages = async (dispatch) => {
+  dispatch(getMessageStart());
+  try {
+    const res = await request.get("/message", {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.user?.token
+        }`,
+      },
+    });
+    dispatch(getMessageSuccess(res.data));
+  } catch (err) {
+    dispatch(getMessageFailure());
+  }
+};
+
+export const deleteMessage = async (dispatch, id) => {
+  dispatch(deleteProductStart());
+  const delMessage = toast.loading("Please wait...");
+  try {
+    await request.delete(`/message/${id}`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.user?.token
+        }`,
+      },
+    });
+    dispatch(deleteMessageSuccess(id));
+    toast.update(delMessage, {
+      render: "You have successfully deleted the message",
+      type: "success",
+      isLoading: false,
+      autoClose: 1000,
+    });
+  } catch (err) {
+    dispatch(deleteProductFailure());
+    toast.update(delMessage, {
+      render: "Something went wrong!!!",
       type: "error",
       isLoading: false,
       autoClose: 2000,
