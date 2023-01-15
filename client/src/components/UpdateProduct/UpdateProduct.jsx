@@ -18,6 +18,8 @@ const UpdateProduct = (props) => {
   const product = useSelector((state) =>
     state.goldVault.goldVault.find((el) => el._id === props.props)
   );
+  const success = useSelector((state) => state.goldVault.success);
+
   const dispatch = useDispatch();
   const [tags, setTags] = useState(product.tags);
   const [inputs, setInputs] = useState({});
@@ -46,7 +48,6 @@ const UpdateProduct = (props) => {
     const product = { ...inputs, tags };
     updateProduct(dispatch, id, product);
     reset();
-    setTags([]);
   };
 
   const {
@@ -58,7 +59,7 @@ const UpdateProduct = (props) => {
 
   useEffect(() => {
     getProducts(dispatch);
-  }, [dispatch, tags, inputs]);
+  }, [dispatch, success]);
 
   const title = register("title", { required: false });
   const link = register("link", { required: false });

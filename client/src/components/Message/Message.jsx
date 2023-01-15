@@ -18,10 +18,12 @@ const Message = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
     addMessage(dispatch, { ...data });
+    reset();
   };
 
   return (
@@ -40,8 +42,8 @@ const Message = () => {
             message: "Please enter a message with at least 3 characters!",
           },
           maxLength: {
-            value: 300,
-            message: `You can't use more than 300 characters!`,
+            value: 500,
+            message: `You can't use more than 500 characters!`,
           },
         })}
       />

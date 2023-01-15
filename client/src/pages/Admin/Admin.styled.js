@@ -63,6 +63,29 @@ export const Bottom = styled.div`
   width: 210px;
   display: flex;
   justify-content: center;
+
+  &.sideBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a {
+    font-size: 24px;
+    color: white;
+    font-weight: 600;
+    border: 1px dashed;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-style: solid;
+    }
+  }
 `;
 
 export const BottomWrapper = styled.div`
@@ -272,7 +295,7 @@ export const PostsList = styled.ul`
     width: 0.5em;
   }
   &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1.3);
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 1.3);
     border-radius: 4px;
   }
   &::-webkit-scrollbar-thumb {
@@ -310,4 +333,21 @@ export const Span = styled.span`
   }
 `;
 
-export const Button = styled.button``;
+export const SideBar = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 180px;
+  justify-content: space-evenly;
+`;
+
+export const Page = styled.span`
+  background: #5252a1;
+  padding: 4px 22px;
+  border-radius: 8px;
+
+  &:hover {
+    animation: ${vibrate} 0.3s linear infinite both;
+  }
+`;

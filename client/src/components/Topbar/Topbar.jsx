@@ -12,8 +12,8 @@ import {
 } from "./Topbar..styled";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Search } from "@mui/icons-material";
 import { Container } from "@mui/material";
+import { RiSearchLine } from "react-icons/ri";
 
 const Topbar = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Topbar = () => {
             </Link>
             <SearchContainer>
               <SearchInput placeholder="Search..." />
-              <Search style={{ color: "#6969d7" }} />
+              <RiSearchLine style={{ color: "#6969d7" }} />
             </SearchContainer>
           </TopLeft>
           <TopRight>
@@ -49,9 +49,14 @@ const Topbar = () => {
                 </Link>
               </>
             ) : (
-              <TopbarIconContainer onClick={handleClick}>
-                LOg Out
-              </TopbarIconContainer>
+              <>
+                <Link to="/admin">
+                  <TopbarIconContainer>Admin Panel</TopbarIconContainer>
+                </Link>
+                <TopbarIconContainer onClick={handleClick}>
+                  LOg Out
+                </TopbarIconContainer>
+              </>
             )}
           </TopRight>
         </TopbarWrapper>

@@ -11,11 +11,16 @@ import UpdateProduct from "../UpdateProduct/UpdateProduct";
 import Product from "../Product/Product";
 import Share from "../Share/Share";
 import Message from "../Message/Message";
+import { useLocation } from "react-router-dom";
 
 const Modal = (props) => {
   const ID = props?.isOpened.product;
+  const location = useLocation();
+  const admin = location.pathname === "/admin";
   return (
-    <ModalWrapper className={"modalWrapper " + props.isOpened.display}>
+    <ModalWrapper
+      className={"modalWrapper " + props.isOpened.display + " admin" + admin}
+    >
       {props.isOpened.display && props.whoIam === "display" && (
         <ModalCenter>
           <ModalBody>

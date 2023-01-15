@@ -76,7 +76,7 @@ const Product = () => {
   };
 
   useEffect(() => {
-    success && getProducts(dispatch);
+    getProducts(dispatch);
   }, [dispatch, success]);
 
   return (
