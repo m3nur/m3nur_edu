@@ -110,27 +110,39 @@ const Footer = () => {
             <BottomRight>
               <Icon>
                 <IconItems>
-                  <IconItemsLink target="_blank">
+                  <IconItemsLink
+                    href="https://www.linkedin.com/in/m3nur/"
+                    target="_blank"
+                  >
                     <LinkedIn />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
-                  <IconItemsLink target="_blank">
+                  <IconItemsLink
+                    href="https://github.com/NurMura88"
+                    target="_blank"
+                  >
                     <GitHub />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
-                  <IconItemsLink target="_blank">
+                  <IconItemsLink href="https://t.me/m3nur" target="_blank">
                     <Telegram />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
-                  <IconItemsLink target="_blank">
+                  <IconItemsLink
+                    href="https://twitter.com/nyqqbb"
+                    target="_blank"
+                  >
                     <Twitter />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
-                  <IconItemsLink target="_blank">
+                  <IconItemsLink
+                    href="https://www.instagram.com/m3nur/"
+                    target="_blank"
+                  >
                     <Instagram />
                   </IconItemsLink>
                 </IconItems>

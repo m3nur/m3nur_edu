@@ -20,7 +20,7 @@ export const SubTitle = styled.span`
 
 export const Textarea = styled.textarea`
   width: 100%;
-  border: 1px solid;
+  border: 1px solid #6969d7;
   border-radius: 8px;
   height: 130px;
   font-size: 20px;

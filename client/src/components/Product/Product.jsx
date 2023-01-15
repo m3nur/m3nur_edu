@@ -2,39 +2,44 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { SubTitle, Tag, Tags, Title } from "../Modal/Modal.styled";
 import { Link, useLocation } from "react-router-dom";
-import styled from "styled-components";
 import { BsLink45Deg } from "react-icons/bs";
-
-const Show = styled.span`
-  font-size: 20px;
-  word-break: break-word;
-`;
-
-const LinkToVisit = styled.a``;
+import { LinkToVisit, Number, Show, Stat, Stats, Time } from "./Product.styled";
+import moment from "moment";
 
 const Product = (props) => {
   const location = useLocation();
-  const productFromDisplay = useSelector((state) =>
+  const product = useSelector((state) =>
     state.goldVault.goldVault.find((el) => el._id === props.props)
   );
   const admin = location.pathname === "/admin";
 
   return (
     <>
-      <LinkToVisit href={productFromDisplay.link} target="_blank">
+      <LinkToVisit href={product.link} target="_blank">
         <Title>
-          {productFromDisplay?.title} <BsLink45Deg />
+          {product?.title} <BsLink45Deg />
         </Title>
       </LinkToVisit>
-      <SubTitle>{productFromDisplay?.desc}</SubTitle>
+      <SubTitle>{product?.desc}</SubTitle>
       <Tags>
-        {productFromDisplay?.tags?.map((el) => (
+        {product?.tags?.map((el) => (
           <Link key={el} to={`/${el}`}>
             <Tag>#{el}</Tag>
           </Link>
         ))}
       </Tags>
-      {admin && <Show>{productFromDisplay?.link}</Show>}
+      {admin && <Show>{product?.link}</Show>}
+      <Time>
+        {moment(product?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+      </Time>
+      <Stats>
+        <Stat>
+          <Number>{product?.visit}</Number> Views
+        </Stat>
+        <Stat>
+          <Number>{product?.likes.length}</Number> Likes
+        </Stat>
+      </Stats>
     </>
   );
 };
