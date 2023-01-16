@@ -20,7 +20,7 @@ export const ModalWrapper = styled.div`
 
   &.admintrue {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
   }
 `;
 

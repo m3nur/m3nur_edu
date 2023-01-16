@@ -26,8 +26,8 @@ function App() {
       <Topbar />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="login" element={user ? <Home /> : <Login />} />
-        <Route path="register" element={user ? <Home /> : <Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="*" element={<NonExistentPage />} />
         <Route
           path="admin"
