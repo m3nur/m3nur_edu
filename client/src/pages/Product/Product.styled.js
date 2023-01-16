@@ -4,7 +4,11 @@ export const ProductPresentation = styled.div`
   padding: 60px 0;
 `;
 
-export const Presentation = styled.div``;
+export const Presentation = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Title = styled.h1`
   font-size: 36px;
@@ -148,11 +152,13 @@ export const Button = styled.button`
   background: white;
   border: 2px solid #6969d7;
   border-radius: 8px;
-  width: 14em;
   outline: none;
   margin-top: 20px;
   cursor: pointer;
   color: #6969d7;
+  display: flex;
+  justify-content: center;
+  width: 50%;
 `;
 
 export const HR = styled.hr`

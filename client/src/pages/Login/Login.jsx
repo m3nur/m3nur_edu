@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Bottom,
   BottomText,
@@ -12,13 +12,15 @@ import {
   Title,
   Wrapper,
 } from "./Login.styled";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../../components";
 import { useForm } from "react-hook-form";
 import { loginU } from "../../redux/apiCalls";
 
 const Login = () => {
+  const well = useSelector((state) => state.user.well);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     register,
@@ -29,6 +31,10 @@ const Login = () => {
   const onSubmit = (data) => {
     loginU(dispatch, { ...data });
   };
+
+  useEffect(() => {
+    well && navigate("/");
+  }, [well, navigate]);
 
   return (
     <Container>

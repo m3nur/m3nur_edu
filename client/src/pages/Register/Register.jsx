@@ -1,6 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../../components";
 import {
   Button,
@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import { registerU } from "../../redux/apiCalls";
 
 const Register = () => {
+  const well = useSelector((state) => state.user.well);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -29,6 +31,10 @@ const Register = () => {
   const onSubmit = (data) => {
     registerU(dispatch, { ...data });
   };
+
+  useEffect(() => {
+    well && navigate("/");
+  }, [well, navigate]);
 
   return (
     <Container>

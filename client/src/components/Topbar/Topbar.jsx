@@ -50,9 +50,11 @@ const Topbar = () => {
               </>
             ) : (
               <>
-                <Link to="/admin">
-                  <TopbarIconContainer>Admin Panel</TopbarIconContainer>
-                </Link>
+                {user?.isAdmin && (
+                  <Link to="/admin">
+                    <TopbarIconContainer>Admin Panel</TopbarIconContainer>
+                  </Link>
+                )}
                 <TopbarIconContainer onClick={handleClick}>
                   LOg Out
                 </TopbarIconContainer>

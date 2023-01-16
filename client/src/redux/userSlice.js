@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   isFetching: false,
   error: false,
+  well: false,
 };
 
 export const authSlice = createSlice({
@@ -17,31 +18,38 @@ export const authSlice = createSlice({
     loginStart: (state) => {
       state.isFetching = true;
       state.error = false;
+      state.well = false;
     },
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.user = action.payload;
       state.error = false;
+      state.well = true;
     },
     loginFailure: (state) => {
       state.isFetching = false;
       state.error = true;
+      state.well = false;
     },
     registerStart: (state) => {
       state.isFetching = true;
       state.error = false;
+      state.well = false;
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
       state.user = action.payload;
       state.error = false;
+      state.well = true;
     },
     registerFailure: (state) => {
       state.isFetching = false;
       state.error = true;
+      state.well = false;
     },
     setLogout: (state) => {
       state.user = null;
+      state.well = false;
     },
   },
 });

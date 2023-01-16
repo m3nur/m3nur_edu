@@ -281,13 +281,11 @@ const Product = () => {
               )}
             </BottomWrapper>
           </Bottom>
-          <Link
-            to="/goldVault"
-            target="_blank"
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <Button>SHOW MORE</Button>
-          </Link>
+          <Button>
+            <Link to="/goldVault" target="_blank">
+              SHOW MORE
+            </Link>
+          </Button>
         </Presentation>
       </Container>
     </ProductPresentation>
