@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Bottom,
   BottomWrapper,
@@ -18,19 +18,20 @@ import {
   Tags,
   Title,
   Top,
-} from "./Product.styled";
-import { Container } from "@mui/system";
-import { useDispatch, useSelector } from "react-redux";
+} from './Product.styled';
+import { Container } from '@mui/system';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getProducts,
   likeProduct,
   unLikeProduct,
   visitProduct,
-} from "../../redux/apiCalls";
-import { Link } from "react-router-dom";
-import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
-import { IoStatsChartOutline } from "react-icons/io5";
-import { Modal } from "../../components";
+} from '../../redux/apiCalls';
+import { Link } from 'react-router-dom';
+import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai';
+import { FiBarChart2 } from 'react-icons/fi';
+
+import { Modal } from '../../components';
 
 //There is a problem here, when you click on the component, it is rendered 3 times, you need to solve
 
@@ -44,7 +45,7 @@ const Product = () => {
   );
   const success = useSelector((state) => state.goldVault.success);
   const userID = useSelector((state) => state.user?.user?._id);
-  const [tagValue, setTagValue] = useState("");
+  const [tagValue, setTagValue] = useState('');
   const handleClick = (e) => {
     setTagValue(e);
   };
@@ -82,7 +83,7 @@ const Product = () => {
   return (
     <ProductPresentation>
       <Modal
-        whoIam={"display"}
+        whoIam={'display'}
         isOpened={modal.modalDisplay}
         onModalClose={() =>
           setModal({
@@ -94,7 +95,7 @@ const Product = () => {
         }
       />
       <Modal
-        whoIam={"share"}
+        whoIam={'share'}
         isOpened={modal.modalShare}
         onModalClose={() =>
           setModal({
@@ -117,44 +118,44 @@ const Product = () => {
           <Bottom>
             <Tabs>
               <Tab
-                name=""
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name=''
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #All
               </Tab>
               <Tab
-                name="JavaScript"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='javascript'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #JavaScript
               </Tab>
               <Tab
-                name="HTML"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='html'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #HTML
               </Tab>
               <Tab
-                name="react"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='react'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #React
               </Tab>
               <Tab
-                name="CSS"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='css'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #CSS
               </Tab>
               <Tab
-                name="animation"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='animation'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #Animation
               </Tab>
               <Tab
-                name="photo"
-                onClick={(e) => handleClick(e.target.getAttribute("name"))}
+                name='photo'
+                onClick={(e) => handleClick(e.target.getAttribute('name'))}
               >
                 #Photo
               </Tab>
@@ -185,13 +186,13 @@ const Product = () => {
                         </Tag>
                       </SmallWrapper>
                       <HR />
-                      <Tag className="bottomBTNs">
-                        <Tags className="bottomBTN chart">
-                          <IoStatsChartOutline style={{ fontSize: "20px" }} />
+                      <Tag className='bottomBTNs'>
+                        <Tags className='bottomBTN chart'>
+                          <FiBarChart2 />
                           <StatValue>{el.visit}</StatValue>
                         </Tags>
                         <Tags
-                          className="bottomBTN share"
+                          className='bottomBTN share'
                           onClick={() =>
                             setModal({
                               ...modal,
@@ -205,11 +206,11 @@ const Product = () => {
                           <AiOutlineShareAlt />
                         </Tags>
                         <Tags
-                          className="bottomBTN heart"
+                          className='bottomBTN heart'
                           onClick={() => handleLike(el._id)}
                         >
                           {el?.likes?.includes(userID) ? (
-                            <AiFillHeart style={{ color: "red" }} />
+                            <AiFillHeart style={{ color: 'red' }} />
                           ) : (
                             <AiOutlineHeart />
                           )}
@@ -244,13 +245,13 @@ const Product = () => {
                         </Tag>
                       </SmallWrapper>
                       <HR />
-                      <Tag className="bottomBTNs">
-                        <Tags className="bottomBTN chart">
-                          <IoStatsChartOutline style={{ fontSize: "20px" }} />
+                      <Tag className='bottomBTNs'>
+                        <Tags className='bottomBTN chart'>
+                          <FiBarChart2 />
                           <StatValue>{el.visit}</StatValue>
                         </Tags>
                         <Tags
-                          className="bottomBTN share"
+                          className='bottomBTN share'
                           onClick={() =>
                             setModal({
                               ...modal,
@@ -264,11 +265,11 @@ const Product = () => {
                           <AiOutlineShareAlt />
                         </Tags>
                         <Tags
-                          className="bottomBTN heart"
+                          className='bottomBTN heart'
                           onClick={() => handleLike(el._id)}
                         >
                           {el?.likes?.includes(userID) ? (
-                            <AiFillHeart className="red" />
+                            <AiFillHeart className='red' />
                           ) : (
                             <AiOutlineHeart />
                           )}
@@ -282,7 +283,7 @@ const Product = () => {
             </BottomWrapper>
           </Bottom>
           <Button>
-            <Link to="/goldVault" target="_blank">
+            <Link to='/goldVault' target='_blank'>
               SHOW MORE
             </Link>
           </Button>
