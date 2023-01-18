@@ -1,21 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { SubTitle, Tag, Tags, Title } from "../Modal/Modal.styled";
-import { Link, useLocation } from "react-router-dom";
-import { BsLink45Deg } from "react-icons/bs";
-import { LinkToVisit, Number, Show, Stat, Stats, Time } from "./Product.styled";
-import moment from "moment";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { SubTitle, Tag, Tags, Title } from '../Modal/Modal.styled';
+import { Link, useLocation } from 'react-router-dom';
+import { BsLink45Deg } from 'react-icons/bs';
+import { LinkToVisit, Number, Show, Stat, Stats, Time } from './Product.styled';
+import moment from 'moment';
 
 const Product = (props) => {
   const location = useLocation();
   const product = useSelector((state) =>
     state.goldVault.goldVault.find((el) => el._id === props.props)
   );
-  const admin = location.pathname === "/admin";
+  const admin = location.pathname === '/admin';
 
   return (
     <>
-      <LinkToVisit href={product.link} target="_blank">
+      <LinkToVisit href={product.link} target='_blank'>
         <Title>
           {product?.title} <BsLink45Deg />
         </Title>
@@ -23,14 +23,14 @@ const Product = (props) => {
       <SubTitle>{product?.desc}</SubTitle>
       <Tags>
         {product?.tags?.map((el) => (
-          <Link key={el} to={`/${el}`}>
+          <Link key={el} to={`/t/${el}`}>
             <Tag>#{el}</Tag>
           </Link>
         ))}
       </Tags>
       {admin && <Show>{product?.link}</Show>}
       <Time>
-        {moment(product?.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+        {moment(product?.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
       </Time>
       <Stats>
         <Stat>
