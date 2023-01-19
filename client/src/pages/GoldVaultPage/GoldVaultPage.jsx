@@ -42,9 +42,11 @@ const GoldVaults = () => {
   const goldVault = useSelector((state) => state?.goldVault?.goldVault);
   const userID = useSelector((state) => state?.user?.user?._id);
   const success = useSelector((state) => state?.goldVault.success);
-  const suitable = goldVault
-    .filter((el) => (loc === 'all' ? el : el.tags.includes(loc)))
-    .sort((a, b) => b.visit - a.visit);
+  const suitable = goldVault.filter((el) =>
+    loc === 'all' ? el : el.tags.includes(loc)
+  );
+  const [btnName, setBtnName] = useState();
+  const [sorted, setSorted] = useState();
 
   const [modal, setModal] = useState({
     modalDisplay: {
@@ -87,6 +89,24 @@ const GoldVaults = () => {
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch, success]);
+
+  useEffect(() => {
+    if (btnName === 'top') {
+      return setSorted(
+        suitable.map((el) => el).sort((a, b) => b.visit - a.visit)
+      );
+    } else if (btnName === 'newest') {
+      return setSorted(
+        suitable.map((el) => el).sort((a, b) => (a.visit > b.visit ? 1 : -1))
+      );
+    } else if (btnName === 'latest') {
+      return setSorted(
+        suitable.map((el) => el).sort((a, b) => (a.visit < b.visit ? 1 : -1))
+      );
+    }
+    //To avoid error (maximum update depth exceeded).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [btnName, JSON.stringify(suitable)]);
 
   return (
     <>
@@ -136,67 +156,136 @@ const GoldVaults = () => {
                 <Info>: #{loc}</Info>
               </TLeft>
               <TRight>
-                <BTN>Top</BTN>
-                <BTN>Newest</BTN>
-                <BTN>Latest</BTN>
+                <BTN
+                  name='top'
+                  onClick={(e) => setBtnName(e.target.getAttribute('name'))}
+                >
+                  Top
+                </BTN>
+                <BTN
+                  name='newest'
+                  onClick={(e) => setBtnName(e.target.getAttribute('name'))}
+                >
+                  Newest
+                </BTN>
+                <BTN
+                  name='latest'
+                  onClick={(e) => setBtnName(e.target.getAttribute('name'))}
+                >
+                  Latest
+                </BTN>
               </TRight>
             </Top>
             <hr style={{ margin: '5px 0' }} />
             <Bottom>
               <Items>
-                {suitable?.map((el) => (
-                  <Item key={el._id}>
-                    <Wrapper
-                      onClick={() => {
-                        setModal({
-                          ...modal,
-                          modalDisplay: {
-                            display: true,
-                            product: el._id,
-                          },
-                        });
-                        handleIncrement(el._id, el.visit);
-                      }}
-                    >
-                      <RightTitle>{el.title}</RightTitle>
-                      <RightTags>
-                        {el.tags.map((el, index) => (
-                          <RightTag className='tags' key={index}>
-                            #{el}
+                {btnName
+                  ? sorted?.map((el) => (
+                      <Item key={el._id}>
+                        <Wrapper
+                          onClick={() => {
+                            setModal({
+                              ...modal,
+                              modalDisplay: {
+                                display: true,
+                                product: el._id,
+                              },
+                            });
+                            handleIncrement(el._id, el.visit);
+                          }}
+                        >
+                          <RightTitle>{el.title}</RightTitle>
+                          <RightTags>
+                            {el.tags.map((el, index) => (
+                              <RightTag className='tags' key={index}>
+                                #{el}
+                              </RightTag>
+                            ))}
+                          </RightTags>
+                        </Wrapper>
+                        <hr style={{ margin: '0 8px' }} />
+                        <RightTags className='buttons'>
+                          <RightTag className='btn'>
+                            <FiBarChart2 />
+                            <StatValue>{el.visit}</StatValue>
                           </RightTag>
-                        ))}
-                      </RightTags>
-                    </Wrapper>
-                    <hr style={{ margin: '0 8px' }} />
-                    <RightTags className='buttons'>
-                      <RightTag className='btn'>
-                        <FiBarChart2 />
-                        <StatValue>{el.visit}</StatValue>
-                      </RightTag>
-                      <RightTag
-                        onClick={() =>
-                          setModal({
-                            ...modal,
-                            modalShare: {
-                              display: true,
-                              product: el._id,
-                            },
-                          })
-                        }
-                      >
-                        <AiOutlineShareAlt />
-                      </RightTag>
-                      <RightTag onClick={() => handleLike(el._id)}>
-                        {el?.likes?.includes(userID) ? (
-                          <AiFillHeart style={{ color: 'red' }} />
-                        ) : (
-                          <AiOutlineHeart />
-                        )}
-                        <StatValue>{el.likes.length}</StatValue>
-                      </RightTag>
-                    </RightTags>
-                  </Item>
-                ))}
+                          <RightTag
+                            onClick={() =>
+                              setModal({
+                                ...modal,
+                                modalShare: {
+                                  display: true,
+                                  product: el._id,
+                                },
+                              })
+                            }
+                          >
+                            <AiOutlineShareAlt />
+                          </RightTag>
+                          <RightTag onClick={() => handleLike(el._id)}>
+                            {el?.likes?.includes(userID) ? (
+                              <AiFillHeart style={{ color: 'red' }} />
+                            ) : (
+                              <AiOutlineHeart />
+                            )}
+                            <StatValue>{el.likes.length}</StatValue>
+                          </RightTag>
+                        </RightTags>
+                      </Item>
+                    ))
+                  : suitable?.map((el) => (
+                      <Item key={el._id}>
+                        <Wrapper
+                          onClick={() => {
+                            setModal({
+                              ...modal,
+                              modalDisplay: {
+                                display: true,
+                                product: el._id,
+                              },
+                            });
+                            handleIncrement(el._id, el.visit);
+                          }}
+                        >
+                          <RightTitle>{el.title}</RightTitle>
+                          <RightTags>
+                            {el.tags.map((el, index) => (
+                              <RightTag className='tags' key={index}>
+                                #{el}
+                              </RightTag>
+                            ))}
+                          </RightTags>
+                        </Wrapper>
+                        <hr style={{ margin: '0 8px' }} />
+                        <RightTags className='buttons'>
+                          <RightTag className='btn'>
+                            <FiBarChart2 />
+                            <StatValue>{el.visit}</StatValue>
+                          </RightTag>
+                          <RightTag
+                            onClick={() =>
+                              setModal({
+                                ...modal,
+                                modalShare: {
+                                  display: true,
+                                  product: el._id,
+                                },
+                              })
+                            }
+                          >
+                            <AiOutlineShareAlt />
+                          </RightTag>
+                          <RightTag onClick={() => handleLike(el._id)}>
+                            {el?.likes?.includes(userID) ? (
+                              <AiFillHeart style={{ color: 'red' }} />
+                            ) : (
+                              <AiOutlineHeart />
+                            )}
+                            <StatValue>{el.likes.length}</StatValue>
+                          </RightTag>
+                        </RightTags>
+                      </Item>
+                    ))}
               </Items>
             </Bottom>
           </Right>
