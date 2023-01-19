@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProductPresentation = styled.div`
   padding: 60px 0;
@@ -144,21 +144,6 @@ export const Tags = styled.li`
       color: red;
     }
   }
-`;
-
-export const Button = styled.button`
-  padding: 2px 10px;
-  font-size: 30px;
-  background: white;
-  border: 2px solid #6969d7;
-  border-radius: 8px;
-  outline: none;
-  margin-top: 20px;
-  cursor: pointer;
-  color: #6969d7;
-  display: flex;
-  justify-content: center;
-  width: 50%;
 `;
 
 export const HR = styled.hr`

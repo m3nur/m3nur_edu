@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const TopbarContainer = styled.div`
-  width: 100%;
-  height: 60px;
   background-color: white;
   position: sticky;
   top: 0;
@@ -12,7 +10,7 @@ export const TopbarContainer = styled.div`
 
 export const TopbarWrapper = styled.div`
   height: 60px;
-  padding: 0 20px;
+  padding: 0 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +29,7 @@ export const TopRight = styled.div`
 export const TopbarIconContainer = styled.div`
   position: relative;
   cursor: pointer;
-  margin-right: 15px;
+  margin-left: 10px;
   color: #555;
   border: 1px solid #6969d7;
   color: #6969d7;
@@ -69,7 +67,7 @@ export const SearchInput = styled.input`
   padding: 4px 30px 4px 10px;
   font-size: 16px;
   margin-left: 30px;
-  width: 300px;
+  width: 350px;
   height: 40px;
   border: 1px solid #c5c5c5;
   border-radius: 8px;
@@ -80,5 +78,28 @@ export const SearchInput = styled.input`
 
   &:focus {
     outline-color: #6969d7;
+  }
+`;
+
+export const NavBar = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+  padding: 10px 0;
+`;
+
+export const NavItem = styled.li`
+  font-size: 18px;
+  width: 120px;
+  display: flex;
+  margin-right: 10px;
+  justify-content: center;
+
+  a:hover {
+    padding: 8px 12px;
+    background-color: rgba(106, 100, 255, 0.6);
+    border-radius: 8px;
+    color: white;
   }
 `;

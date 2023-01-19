@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Bottom,
   BottomWrapper,
-  Button,
   HR,
   Presentation,
   PresentSubTitle,
@@ -27,7 +26,6 @@ import {
   unLikeProduct,
   visitProduct,
 } from '../../redux/apiCalls';
-import { Link } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai';
 import { FiBarChart2 } from 'react-icons/fi';
 
@@ -282,11 +280,6 @@ const Product = () => {
               )}
             </BottomWrapper>
           </Bottom>
-          <Button>
-            <Link to='/goldVault' target='_blank'>
-              SHOW MORE
-            </Link>
-          </Button>
         </Presentation>
       </Container>
     </ProductPresentation>
