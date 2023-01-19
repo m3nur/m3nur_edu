@@ -70,7 +70,7 @@ const Register = () => {
           <RegisterLabel>Email Address</RegisterLabel>
           <Input
             type="email"
-            placeholder="example@example.com"
+            placeholder="example@email.com"
             {...register("email", {
               required: "Email is required",
               pattern: {

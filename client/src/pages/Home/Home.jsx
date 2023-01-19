@@ -7,11 +7,12 @@ import {
   Top,
   TopWrapper,
   Wrapper,
-} from "./Home.styled";
-import { HomeLogo } from "../../components";
-import { Container } from "@mui/system";
-import { Stats } from "../../components";
-import Product from "../Product/Product";
+} from './Home.styled';
+import { HomeLogo } from '../../components';
+import { Container } from '@mui/system';
+import { Stats } from '../../components';
+import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -21,7 +22,7 @@ const Home = () => {
           <Top>
             <TopWrapper>
               <Title>
-                Grow faster with the <i style={{ color: "#6969d7" }}>M3NUR</i>{" "}
+                Grow faster with the <i style={{ color: '#6969d7' }}>M3NUR</i>{' '}
                 team!
               </Title>
               <SubTitle>
@@ -29,7 +30,9 @@ const Home = () => {
                 the best tools in web development especially for you. We are
                 confident that they are gonna make your life much easier.
               </SubTitle>
-              <BTNGetStarted>Get Start</BTNGetStarted>
+              <Link to='/t/all'>
+                <BTNGetStarted>Get started</BTNGetStarted>
+              </Link>
             </TopWrapper>
           </Top>
           <Bottom>
