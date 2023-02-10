@@ -9,6 +9,7 @@ import Product from './Product/Product';
 import UpdateProduct from './UpdateProduct/UpdateProduct';
 import Share from './Share/Share';
 import Message from './Message/Message';
+import Comments from './Comments/Comments';
 
 export {
   Topbar,
@@ -22,4 +23,5 @@ export {
   UpdateProduct,
   Share,
   Message,
+  Comments,
 };
