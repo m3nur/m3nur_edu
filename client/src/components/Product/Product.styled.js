@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Show = styled.span`
   font-size: 20px;
@@ -32,4 +32,9 @@ export const Number = styled.span`
   font-weight: 900;
   font-size: 20px;
   color: #6969d7;
+`;
+
+export const CommentsWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;

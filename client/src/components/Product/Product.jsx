@@ -3,8 +3,17 @@ import { useSelector } from 'react-redux';
 import { SubTitle, Tag, Tags, Title } from '../Modal/Modal.styled';
 import { Link, useLocation } from 'react-router-dom';
 import { BsLink45Deg } from 'react-icons/bs';
-import { LinkToVisit, Number, Show, Stat, Stats, Time } from './Product.styled';
+import {
+  CommentsWrapper,
+  LinkToVisit,
+  Number,
+  Show,
+  Stat,
+  Stats,
+  Time,
+} from './Product.styled';
 import moment from 'moment';
+import Comments from '../Comments/Comments';
 
 const Product = (props) => {
   const location = useLocation();
@@ -40,6 +49,9 @@ const Product = (props) => {
           <Number>{product?.likes.length}</Number> Likes
         </Stat>
       </Stats>
+      <CommentsWrapper>
+        <Comments />
+      </CommentsWrapper>
     </>
   );
 };
