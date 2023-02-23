@@ -20,7 +20,7 @@ const Comments = () => {
           <Button>Submit</Button>
         </InputWrapper>
         <CommentList>
-          <Comment></Comment>
+          <Comment>Комментарии</Comment>
         </CommentList>
       </Content>
     </Wrapper>
