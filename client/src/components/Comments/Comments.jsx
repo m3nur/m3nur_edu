@@ -21,6 +21,7 @@ const Comments = () => {
         </InputWrapper>
         <CommentList>
           <Comment>Комментарии</Comment>
+          <Comment>Комментарии</Comment>
         </CommentList>
       </Content>
     </Wrapper>
