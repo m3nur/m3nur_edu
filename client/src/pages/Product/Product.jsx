@@ -34,20 +34,25 @@ import { Modal } from '../../components';
 //There is a problem here, when you click on the component, it is rendered 3 times, you need to solve
 
 const Product = () => {
-  const dispatch = useDispatch();
   const goldVault = useSelector(
     (state) =>
       state.goldVault.goldVault
-        .filter((el) => el.recommended)
-        .sort((a, b) => b.visit - a.visit) //Sorting by likes will be better than visiting)
+        ?.filter((el) => el.recommended)
+        ?.sort((a, b) => b.visit - a.visit) //Sorting by likes will be better than visiting)
   );
   const success = useSelector((state) => state.goldVault.success);
   const userID = useSelector((state) => state.user?.user?._id);
+
+  const dispatch = useDispatch();
+
   const [tagValue, setTagValue] = useState('');
+
   const handleClick = (e) => {
     setTagValue(e);
   };
-  const recommended = goldVault.filter((el) => el.tags.includes(tagValue));
+
+  const recommended = goldVault?.filter((el) => el.tags.includes(tagValue));
+
   const [modal, setModal] = useState({
     modalDisplay: {
       display: false,
@@ -65,7 +70,7 @@ const Product = () => {
   };
 
   const handleLike = (id) => {
-    const productID = goldVault.filter((el) => el._id.includes(id));
+    const productID = goldVault?.filter((el) => el._id.includes(id));
     const val = productID[0].likes.includes(userID);
     if (val) {
       unLikeProduct(dispatch, productID, userID);
@@ -287,3 +292,4 @@ const Product = () => {
 };
 
 export default Product;
+  

@@ -5,9 +5,9 @@ import {
   LinkedIn,
   Telegram,
   Twitter,
-} from "@mui/icons-material";
-import { Container } from "@mui/system";
-import React, { useState } from "react";
+} from '@mui/icons-material';
+import { Container } from '@mui/system';
+import React, { useState } from 'react';
 import {
   BottomLeft,
   BottomRight,
@@ -31,9 +31,9 @@ import {
   WrapperLeftH2,
   WrapperLeftLi,
   WrapperLeftUl,
-} from "./Footer.styled";
-import OurWebSite from "../../image/OurWebSIte.png";
-import { Modal } from "../../components";
+} from './Footer.styled';
+import OurWebSite from '../../image/OurWebSIte.png';
+import { Modal } from '../../components';
 
 const Footer = () => {
   const [modal, setModal] = useState({
@@ -44,7 +44,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <Modal
-        whoIam={"message"}
+        whoIam={'message'}
         isOpened={modal.modalMessage}
         onModalClose={() =>
           setModal({
@@ -87,7 +87,7 @@ const Footer = () => {
                 </WrapperLeftUl>
               </TopWrapperLeft>
               <TopWrapperRight>
-                <IMG src={OurWebSite} alt="our web site" />
+                <IMG src={OurWebSite} alt='our web site' />
               </TopWrapperRight>
             </TopRight>
           </FooterTopWrapper>
@@ -99,49 +99,49 @@ const Footer = () => {
             <BottomLeft>
               Made with <Favorite /> by
               <IconItemsLink
-                style={{ textDecoration: "underline", margin: "0 5px" }}
-                href="https://github.com/NurMura88"
-                target="_blank"
+                style={{ textDecoration: 'underline', margin: '0 5px' }}
+                href='https://github.com/m3nur'
+                target='_blank'
               >
-                Nurbek Murataliev.
+                m3nur
               </IconItemsLink>
-              © 2022-2023. All rights reserved.
+              © 2022-{new Date().getFullYear()}. All rights reserved.
             </BottomLeft>
             <BottomRight>
               <Icon>
                 <IconItems>
                   <IconItemsLink
-                    href="https://www.linkedin.com/in/m3nur/"
-                    target="_blank"
+                    href='https://www.linkedin.com/in/m3nur/'
+                    target='_blank'
                   >
                     <LinkedIn />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
                   <IconItemsLink
-                    href="https://github.com/NurMura88"
-                    target="_blank"
+                    href='https://github.com/m3nur'
+                    target='_blank'
                   >
                     <GitHub />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
-                  <IconItemsLink href="https://t.me/m3nur" target="_blank">
+                  <IconItemsLink href='https://t.me/m3nur' target='_blank'>
                     <Telegram />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
                   <IconItemsLink
-                    href="https://twitter.com/nyqqbb"
-                    target="_blank"
+                    href='https://twitter.com/nyqqbb'
+                    target='_blank'
                   >
                     <Twitter />
                   </IconItemsLink>
                 </IconItems>
                 <IconItems>
                   <IconItemsLink
-                    href="https://www.instagram.com/m3nur/"
-                    target="_blank"
+                    href='https://www.instagram.com/m3nur/'
+                    target='_blank'
                   >
                     <Instagram />
                   </IconItemsLink>

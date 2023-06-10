@@ -30,14 +30,15 @@ export const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const BottomWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
-  justify-content: space-between;
 `;
 
 export const Tabs = styled.ul`
@@ -72,7 +73,6 @@ export const Small = styled.div`
   border: 1px solid #6969d7;
   border-radius: 8px;
   width: 370px;
-  height: 100%;
   margin-bottom: 20px;
   cursor: pointer;
 

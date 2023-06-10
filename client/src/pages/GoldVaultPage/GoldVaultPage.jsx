@@ -42,7 +42,7 @@ const GoldVaults = () => {
   const goldVault = useSelector((state) => state?.goldVault?.goldVault);
   const userID = useSelector((state) => state?.user?.user?._id);
   const success = useSelector((state) => state?.goldVault.success);
-  const suitable = goldVault.filter((el) =>
+  const suitable = goldVault?.filter((el) =>
     loc === 'all' ? el : el.tags.includes(loc)
   );
   const [btnName, setBtnName] = useState();
