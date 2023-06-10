@@ -21,7 +21,7 @@ const Main = styled.div`
 `;
 
 function App() {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state?.user?.user);
   return (
     <Main>
       <Topbar />
